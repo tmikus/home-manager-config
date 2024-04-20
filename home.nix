@@ -42,8 +42,11 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    bat
     clang
+    delta
     go
+    lua-language-server
     nodejs_20
     python312
     rustc
@@ -67,6 +70,24 @@
       s = "status";
     };
     extraConfig = {
+      # Delta config
+      core = {
+        pager = "delta";
+      };
+      delta = {
+        navigate = true;
+      };
+      diff = {
+        colorMoved = "default";
+      };
+      interactive = {
+        diffFilter = "delta --color-only";
+      };
+      merge = {
+        conflictstyle = "diff3";
+      };
+
+      # Other 
       init = {
         defaultBranch = "main";
       };

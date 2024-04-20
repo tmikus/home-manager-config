@@ -17,19 +17,30 @@ return {
   },
   {
   	"williamboman/mason.nvim",
-    build = ":MasonInstallAll",
+    build = ":MasonUpdate",
     opts = {
   		ensure_installed = {
         "css-lsp" ,
         "gopls",
   			"html-lsp",
-  			"lua-language-server",
         "prettier",
         "python-lsp-server",
         "rust-analyzer",
         "stylua",
   		},
   	},
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    ensure_installed = {
+      "lua_ls",
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("lspconfig").lua_ls.setup {}
+    end
   },
   {
   	"nvim-treesitter/nvim-treesitter",
@@ -46,8 +57,11 @@ return {
     },
   	opts = {
   		ensure_installed = {
-  			"vim", "lua", "vimdoc",
-       "html", "css"
+  			"vim",
+        "lua",
+        "vimdoc",
+        "html",
+        "css",
   		},
   	},
   },

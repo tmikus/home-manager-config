@@ -155,12 +155,20 @@
         };
       }
     ];
-    profileExtra = ''
-      # Add toolbox to PATH
-      export PATH="$PATH:/Users/tmikus/.toolbox/bin"
-
+    initExtraFirst = ''
+      autoload -Uz compinit
+      compinit
+    '';
+    initExtra = ''
       # Add mechanic to the environment
       [ -f "$HOME/.local/share/mechanic/complete.zsh" ] && source "$HOME/.local/share/mechanic/complete.zsh"
+    '';
+    profileExtra = ''
+      # Add toolbox to PATH
+      export PATH="$PATH:/Users/tmikus/.toolbox/bin" 
+
+      # Set PATH, MANPATH, etc., for Homebrew.
+      [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
     shellAliases = {
       bb="brazil-build $@";

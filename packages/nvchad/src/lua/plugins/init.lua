@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
+    event = 'BufWritePre', -- uncomment for format on save
     config = function()
       require "configs.conform"
     end,
@@ -17,6 +17,7 @@ return {
   },
   {
   	"williamboman/mason.nvim",
+    build = ":MasonInstallAll",
     opts = {
   		ensure_installed = {
   			"lua-language-server",
@@ -29,6 +30,17 @@ return {
   },
   {
   	"nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        config = function()
+          require "ts_context_commentstring".setup {}
+          vim.g.skip_ts_context_commentstring_module = true
+        end,
+      },
+    },
   	opts = {
   		ensure_installed = {
   			"vim", "lua", "vimdoc",
@@ -40,7 +52,7 @@ return {
     'VonHeikemen/fine-cmdline.nvim',
     dependencies = { 'MunifTanjim/nui.nvim' },
     config = function()
-      require "../fine-cmdline.lua"
+      require "../cmdline"
     end
   },
   "nvim-lua/plenary.nvim",
@@ -59,4 +71,32 @@ return {
       return vim.fn.executable "make" == 1
     end
   },
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup {
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+      }
+    end,
+  },
+  "stevearc/dressing.nvim",
+  {
+    "folke/todo-comments.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    opts = {},
+  },
+  {
+    "folke/zen-mode.nvim",
+    config = function()
+      require "../zen-mode-options"
+    end,
+  },
+  {
+    "akinsho/bufferline.nvim",
+    version = "v4.*",
+  },
+  "tpope/vim-sensible",
+  "tpope/vim-surround",
+  { "windwp/nvim-autopairs", opts = {} },
+  "yuttie/comfortable-motion.vim",
 }

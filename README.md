@@ -8,7 +8,23 @@ The configuration is made portable with the use of the [Nix Home Manager](https:
 
 ## Pre-requisites
 
-In order to use this configuration you'll need to first install a Nix Home Manager on your device. To do that simply follow the steps from [Standalone Installation](https://nix-community.github.io/home-manager/index.xhtml#ch-installation) page, copied here for simplicity:
+In order to use this configuration you'll need to first install the following tools:
+
+**Nix Package Manager**
+
+Before you're able to install the Nix Home Manager you need to install the Nix Package manager.
+
+The instructions depend on the OS you're on. For NixOS you don't need to do anything as it comes with the package manager, but on other OS here are the instructions:
+
+* [Linux](https://nixos.org/download/#nix-install-linux)
+* [MacOS](https://nixos.org/download/#nix-install-macos)
+* [Windows - WSL2](https://nixos.org/download/#nix-install-windows)
+* [More](https://nixos.org/download/#nix-more)
+
+
+**Nix Home Manager**
+
+To install it, simply follow the steps from [Standalone Installation](https://nix-community.github.io/home-manager/index.xhtml#ch-installation) page, copied here for simplicity:
 
 ```bash
 nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz home-manager
@@ -22,10 +38,10 @@ nix-shell '<home-manager>' -A install
 Once you have the Home Manager installed, simply clone this repository in `~/.config/home-manager` and run `home-manager switch`
 
 ```bash
-cd ~/.config/home-manager/
+cd ~/.config/
+rm -rf home-manager # Remove prior Home Manager configuration
 nix-shell -p git # Open a new shell with git enabled
-
-git clone https://github.com/tmikus/nix-config.git
+git clone git@github.com:tmikus/nix-config.git home-manager
 exit # exit the git-enabled shell
 
 home-manager switch

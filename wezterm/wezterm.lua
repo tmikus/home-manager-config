@@ -52,4 +52,21 @@ config.window_frame = {
   inactive_titlebar_bg = "#1e272c"
 }
 
+local function file_exists(name)
+  local f = io.open(name, "r")
+  if f ~= nil then
+    io.close(f)
+    return true
+  else
+    return false
+  end
+end
+
+local additional_config_path = os.getenv("HOME") .. '/wezterm-local'
+
+if file_exists(additional_config_path .. '.lua') then
+  local overrides = require(additional_config_path)
+  for k, v in pairs(overrides) do config[k] = v end
+end
+
 return config

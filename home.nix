@@ -8,9 +8,8 @@
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "tmikus";
-  # home.homeDirectory = "/home/tmikus"; # NixOS
-  home.homeDirectory = "/Users/tmikus"; # MacOS
+  home.username = builtins.getEnv "USER";
+  home.homeDirectory = builtins.getEnv "HOME";
 
   # targets.genericLinux.enable = true; # ENABLE THIS ON NON-NIXOS
 

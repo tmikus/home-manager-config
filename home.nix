@@ -52,9 +52,9 @@
     thefuck
     tree-sitter
     unzip
-    zig
     xclip
     wget
+    zig
   ];
 
   programs.git = {
@@ -155,6 +155,20 @@
         };
       }
     ];
+    profileExtra = ''
+      # Add toolbox to PATH
+      export PATH="$PATH:/Users/tmikus/.toolbox/bin"
+
+      # Add mechanic to the environment
+      [ -f "$HOME/.local/share/mechanic/complete.zsh" ] && source "$HOME/.local/share/mechanic/complete.zsh"
+    '';
+    shellAliases = {
+      bb="brazil-build $@";
+      bbb="brazil-recursive-cmd --allPackages brazil-build $@";
+      bws="brazil workspace $@";
+      morning="ssh-add -D && mwinit --aea && ssh-add --apple-use-keychain ~/.ssh/id_ecdsa";
+      update_db="sudo /usr/libexec/locate.updatedb";
+    };
     oh-my-zsh = {
       enable = true;
       plugins = [
@@ -167,6 +181,11 @@
       ];
       theme = "robbyrussell";
     };
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

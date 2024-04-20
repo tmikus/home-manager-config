@@ -20,11 +20,14 @@ return {
     build = ":MasonInstallAll",
     opts = {
   		ensure_installed = {
-  			"lua-language-server",
-        "stylua",
-  			"html-lsp",
         "css-lsp" ,
+        "gopls",
+  			"html-lsp",
+  			"lua-language-server",
         "prettier",
+        "python-lsp-server",
+        "rust-analyzer",
+        "stylua",
   		},
   	},
   },
@@ -47,13 +50,6 @@ return {
        "html", "css"
   		},
   	},
-  },
-  {
-    'VonHeikemen/fine-cmdline.nvim',
-    dependencies = { 'MunifTanjim/nui.nvim' },
-    config = function()
-      require "../cmdline"
-    end
   },
   "nvim-lua/plenary.nvim",
   {
@@ -99,5 +95,14 @@ return {
   "tpope/vim-surround",
   { "windwp/nvim-autopairs", opts = {} },
   "yuttie/comfortable-motion.vim",
-  "rcarriga/nvim-notify",
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = require("../noice-options"),
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+  }
 }

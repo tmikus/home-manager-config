@@ -42,6 +42,7 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     clang
+    go
     nodejs_20
     python312
     rustc

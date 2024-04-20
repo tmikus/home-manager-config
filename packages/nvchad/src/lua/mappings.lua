@@ -3,9 +3,6 @@ require "nvchad.mappings"
 local wk = require "which-key"
 local telescope = require "telescope.builtin"
 
--- FineCmdline remaps
-vim.api.nvim_set_keymap("n", ":", "<cmd>FineCmdline<CR>", { noremap = true })
-
 -- Better Vim default keymappings
 local n_defaults = {
   -- General

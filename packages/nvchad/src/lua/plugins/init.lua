@@ -99,4 +99,5 @@ return {
   "tpope/vim-surround",
   { "windwp/nvim-autopairs", opts = {} },
   "yuttie/comfortable-motion.vim",
+  "rcarriga/nvim-notify",
 }

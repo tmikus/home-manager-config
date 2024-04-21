@@ -2,13 +2,18 @@
 
 {
   imports = [
+    ./git.nix
+    ./java.nix
     ./overlays.nix
     ./neovim
+    ./starship.nix
     ./wezterm
+    ./zoxide.nix
+    ./zsh.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
-  # manage.
+  # manage.manage
   home.username = builtins.getEnv "USER";
   home.homeDirectory = builtins.getEnv "HOME";
 
@@ -29,7 +34,6 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
-
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -59,164 +63,7 @@
     wget
     zig
   ];
-
-  programs.git = {
-    enable = true;
-    userName = "Tomasz Mikus";
-    userEmail = "mikus.tomasz@gmail.com";
-    aliases = {
-      ci = "commit";
-      co = "checkout";
-      s = "status";
-    };
-    extraConfig = {
-      # Delta config
-      core = {
-        pager = "delta";
-      };
-      delta = {
-        navigate = true;
-      };
-      diff = {
-        colorMoved = "default";
-      };
-      interactive = {
-        diffFilter = "delta --color-only";
-      };
-      merge = {
-        conflictstyle = "diff3";
-      };
-
-      # Other 
-      init = {
-        defaultBranch = "main";
-      };
-      push = {
-        autoSetupRemote = true;
-      };
-    };
-  };
-
-  programs.java = {
-    enable = true;
-    package = pkgs.openjdk21;
-  };
-
-  programs.starship = {
-    enable = true;
-
-    settings = {
-      add_newline = false;
-
-      # Shows the username
-      username = {
-        style_user = "white bold";
-        style_root = "black bold";
-        format = "[$user]($style) ";
-        disabled = false;
-        show_always = false;
-      };
-
   
-      # Shows current directory
-      directory = {
-        truncation_symbol = "…/";
-        home_symbol = "󰋜 ~";
-        read_only_style = "197";
-        read_only = "  ";
-        format = "at [$path]($style)[$read_only]($read_only_style) ";
-      };
-
-      # Shows current git branch
-      git_branch = {
-        symbol = " ";
-        format = "via [$symbol$branch]($style)";
-        truncation_symbol = "…/";
-        style = "bold green";
-      };
-
-      # Shows current git status
-      git_status = {
-        format = "([ \( $all_status$ahead_behind\)]($style) )";
-        style = "bold green";
-        conflicted = "[ confliced=$count](red) ";
-        up_to_date = "[󰘽 up-to-date](green) ";
-        untracked = "[󰋗 untracked=$count](red) ";
-        ahead = " ahead=$count";
-        diverged = " ahead=$ahead_count  behind=$behind_count";
-        behind = " behind=$count";
-        stashed = "[ stashed=$count](green) ";
-        modified = "[󰛿 modified=$count](yellow) ";
-        staged = "[󰐗 staged=$count](green) ";
-        renamed = "[󱍸 renamed=$count](yellow) ";
-        deleted = "[󰍶 deleted=$count](red) ";
-      };
-
-      # Shows kubernetes context and namespace
-      kubernetes = {
-        format = "via [󱃾 $context\($namespace\)](bold purple) ";
-        disabled = false;
-      };
-    };
-  };
-
-  
-  programs.zsh = {
-    enable = true;
-    syntaxHighlighting.enable = true;
-    plugins = [
-      {
-	      # will source zsh-autosuggestions.plugin.zsh
-        name = "zsh-autosuggestions";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-autosuggestions";
-          rev = "v0.7.0";
-          sha256 = "1g3pij5qn2j7v7jjac2a63lxd97mcsgw6xq6k5p7835q9fjiid98";
-        };
-      }
-    ];
-    initExtraFirst = ''
-      autoload -Uz compinit
-      compinit
-    '';
-    initExtra = ''
-      # Add mechanic to the environment
-      [ -f "$HOME/.local/share/mechanic/complete.zsh" ] && source "$HOME/.local/share/mechanic/complete.zsh"
-    '';
-    profileExtra = ''
-      # Add toolbox to PATH
-      export PATH="$PATH:/Users/tmikus/.toolbox/bin" 
-
-      # Set PATH, MANPATH, etc., for Homebrew.
-      [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"
-    '';
-    shellAliases = {
-      bb="brazil-build $@";
-      bbb="brazil-recursive-cmd --allPackages brazil-build $@";
-      bws="brazil workspace $@";
-      morning="ssh-add -D && mwinit --aea && ssh-add --apple-use-keychain ~/.ssh/id_ecdsa";
-      update_db="sudo /usr/libexec/locate.updatedb";
-    };
-    oh-my-zsh = {
-      enable = true;
-      plugins = [
-        "git"
-        "npm"
-        "history"
-        "node"
-        "rust"
-        "thefuck"
-      ];
-      theme = "robbyrussell";
-    };
-  };
-
-  programs.zoxide = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {

@@ -22,4 +22,6 @@ return {
       "jose-elias-alvarez/null-ls.nvim",
     },
   },
+  "maxmellon/vim-jsx-pretty",
+  "jparise/vim-graphql",
 }

@@ -26,7 +26,7 @@
     '';
     profileExtra = ''
       # Add toolbox to PATH
-      export PATH="$PATH:/Users/tmikus/.toolbox/bin" 
+      export PATH="$PATH:${builtins.getEnv "HOME"}/.toolbox/bin" 
 
       # Set PATH, MANPATH, etc., for Homebrew.
       [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"

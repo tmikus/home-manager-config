@@ -36,6 +36,7 @@
       bbb="brazil-recursive-cmd --allPackages brazil-build $@";
       bws="brazil workspace $@";
       morning="ssh-add -D && mwinit --aea && ssh-add --apple-use-keychain ~/.ssh/id_ecdsa";
+      reset_nvim="rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.config/nvim ~/.cache/nvim";
       update_db="sudo /usr/libexec/locate.updatedb";
     };
     oh-my-zsh = {

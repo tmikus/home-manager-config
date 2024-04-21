@@ -1,5 +1,33 @@
 local wezterm = require 'wezterm'
 
+local default_padding = {
+  left = '1cell',
+  right = '1cell',
+  top = '0.5cell',
+  bottom = '0.5cell',
+}
+
+wezterm.on('update-status', function(window, pane)
+  local overrides = window:get_config_overrides() or {}
+  if pane:is_alt_screen_active() then
+    overrides.enable_scroll_bar = false
+    overrides.window_padding = {
+      left = 0,
+      right = 0,
+      top = 0,
+      bottom = 0,
+    }
+  else
+    overrides.enable_scroll_bar = true
+    overrides.window_padding = default_padding
+  end
+  window:set_config_overrides(overrides)
+end)
+
+local function is_windows()
+  return package.config:sub(1, 1) == "\\" and true or false
+end
+
 -- This table will hold the configuration.
 local config = {}
 
@@ -10,7 +38,6 @@ if wezterm.config_builder then
 end
 
 local font = wezterm.font('FiraCode Nerd Font')
-
 config.color_scheme = 'Snazzy'
 config.colors = {
   background = '#263238',
@@ -40,7 +67,7 @@ config.colors = {
 }
 config.enable_scroll_bar = true
 config.font = wezterm.font('FiraCode Nerd Font')
-config.font_size = 14.0
+config.font_size = is_windows() and 11.0 or 14.0
 config.send_composed_key_when_left_alt_is_pressed = true
 config.use_fancy_tab_bar = true
 config.use_ime = true
@@ -48,9 +75,10 @@ config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 config.window_frame = {
   active_titlebar_bg = "#1e272c",
   font = font,
-  font_size = 13.0,
+  font_size = is_windows() and 10.0 or 13.0,
   inactive_titlebar_bg = "#1e272c"
 }
+config.window_padding = default_padding
 
 local function file_exists(name)
   local f = io.open(name, "r")
@@ -62,7 +90,15 @@ local function file_exists(name)
   end
 end
 
-local additional_config_path = os.getenv("HOME") .. '/wezterm-local'
+local function get_home_path()
+  local home = os.getenv("HOME")
+  if home then
+    return home
+  end
+  return os.getenv("userprofile")
+end
+
+local additional_config_path = get_home_path() .. '/wezterm-local'
 
 if file_exists(additional_config_path .. '.lua') then
   local overrides = require(additional_config_path)

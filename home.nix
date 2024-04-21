@@ -47,6 +47,7 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     bat
+    cargo
     clang
     delta
     go

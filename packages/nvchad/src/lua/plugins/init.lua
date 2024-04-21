@@ -16,35 +16,43 @@ return {
     end,
   },
   {
-  	"williamboman/mason.nvim",
+    "williamboman/mason.nvim",
     build = ":MasonUpdate",
     opts = {
-  		ensure_installed = {
-        "css-lsp" ,
-        "gopls",
-  			"html-lsp",
-        "prettier",
-        "python-lsp-server",
-        "rust-analyzer",
-        "stylua",
-  		},
-  	},
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    ensure_installed = {
-      "lua_ls",
+      -- ensure_installed = {
+      --   "css-lsp",
+      --   "gopls",
+      --   "html-lsp",
+      --   "prettier",
+      --   "python-lsp-server",
+      --   "rust-analyzer",
+      --   "stylua",
+      -- },
     },
   },
   {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require("lspconfig").lua_ls.setup {}
-    end
+    "williamboman/mason-lspconfig.nvim",
+    build = function()
+      require("mason-lspconfig").setup {
+        ensure_installed = {
+          "cssls",
+          "gopls",
+          "lua_ls",
+          "html",
+          "prettier",
+          "python-lsp-server",
+          "rust-analyzer",
+          "stylua",
+        },
+      }
+    end,
   },
   {
-  	"nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
+    "nvim-treesitter/nvim-treesitter",
+    -- build = ":TSUpdate",
+    build = function()
+      require("nvim-treesitter.install").update({ with_sync = true })()
+    end,
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       {
@@ -55,15 +63,15 @@ return {
         end,
       },
     },
-  	opts = {
-  		ensure_installed = {
-  			"vim",
-        "lua",
-        "vimdoc",
-        "html",
+    opts = {
+      ensure_installed = {
         "css",
-  		},
-  	},
+        "html",
+        "lua",
+        "vim",
+        "vimdoc",
+      },
+    },
   },
   "nvim-lua/plenary.nvim",
   {
@@ -118,5 +126,11 @@ return {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
     },
-  }
+  },
+  {
+    "petertriho/nvim-scrollbar",
+    config = function()
+      require "../scrollbar-options"
+    end
+  },
 }

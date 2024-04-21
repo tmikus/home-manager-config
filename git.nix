@@ -25,7 +25,7 @@
         diffFilter = "delta --color-only";
       };
       merge = {
-        conflictstyle = "diff2";
+        conflictstyle = "diff3";
       };
 
       # Other 

@@ -4,8 +4,8 @@
   imports = [
     ./git.nix
     ./java.nix
+    ./neovim.nix
     ./overlays.nix
-    ./neovim
     ./starship.nix
     ./wezterm
     ./zoxide.nix

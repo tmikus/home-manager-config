@@ -8,6 +8,7 @@ in
     (final: prev: 
       rec {
         nvchad = prev.callPackage ./packages/nvchad { };
+        nv-tmikus = prev.callPackage ./packages/nv-tmikus { };
     })
   ];
 }

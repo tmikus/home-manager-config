@@ -10,7 +10,6 @@
   xdg.configFile."nvim" = {
     recursive = true;
     source = "${pkgs.nv-tmikus}";
-    # source = "${pkgs.nvchad}";
   };
 }
 

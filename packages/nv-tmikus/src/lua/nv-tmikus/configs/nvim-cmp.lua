@@ -1,21 +1,7 @@
 local cmp = require "cmp"
 local luasnip = require "luasnip"
 
--- local function should_load_snippets()
---   local unload_plugins_table = helpers.get_config_item { "unload_plugins" }
-
---   for _, k in pairs(unload_plugins_table) do
---     if k == "snippets" then
---       return false
---     end
---   end
-
---   return true
--- end
-
--- if should_load_snippets() then
 require("luasnip.loaders.from_vscode").lazy_load()
--- end
 
 luasnip.config.setup {}
 
@@ -59,13 +45,10 @@ cmp.setup {
     {
       name = "nvim_lsp",
       entry_filter = function(entry)
-        -- if should_load_snippets() then
         return entry:get_kind()
-        -- end
-
-        -- return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
       end,
     },
     { name = "luasnip" },
   },
 }
+

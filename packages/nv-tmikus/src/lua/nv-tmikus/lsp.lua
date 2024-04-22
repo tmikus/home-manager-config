@@ -223,7 +223,7 @@ local all_formatters = {
   eslint_d = {
     extra_args = { "--stdin", "--fix-to-stdout" },
   },
-  goimports = {},
+  -- goimports = {},
   -- gofmt = {},
   prettier = {
     filetypes = {
@@ -291,5 +291,8 @@ null_ls.setup({
 require("mason-null-ls").setup({
   ensure_installed = vim.tbl_keys(all_formatters),
 })
+
+-- Start go lang support
+require("go").setup()
 
 require("lspconfig.ui.windows").default_options.border = "single"

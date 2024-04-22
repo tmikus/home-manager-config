@@ -60,10 +60,12 @@ in
       setuptools
       wheel
     ]))
+    ripgrep
     rustc
     rustfmt
     starship
     thefuck
+    tree-sitter
     unzip
     xclip
     wget

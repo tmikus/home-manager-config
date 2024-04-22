@@ -84,12 +84,17 @@ return {
     "lewis6991/gitsigns.nvim",
     opts = {},
   },
+  -- Fancy in-terminal scrollbar
   {
     "petertriho/nvim-scrollbar",
     config = function()
       require("scrollbar").setup(require "nv-tmikus.configs.scrollbar")
     end
   },
-  -- Highlight argument's definitions and usages using Treesitter
+  -- Highlight arguments
   "m-demare/hlargs.nvim",
+  -- Floading window support
+  "ray-x/guihua.lua",
+  -- Color highlighter for Neovim
+  "NvChad/nvim-colorizer.lua",
 }

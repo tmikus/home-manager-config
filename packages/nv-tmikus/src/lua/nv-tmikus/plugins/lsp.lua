@@ -38,5 +38,7 @@ return {
     config = function()
       require "nv-tmikus.configs.nvim-cmp"
     end
-  }
+  },
+  -- Go Language Support
+  "ray-x/go.nvim",
 }

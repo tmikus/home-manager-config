@@ -1,5 +1,6 @@
 return {
     -- theme = "catppuccin",
-    theme = "material",
-    catppuccin_flavour = "mocha",
+    -- catppuccin_flavour = "mocha",
+    -- theme = "material",
+    theme = "astrotheme",
 }

@@ -1,5 +1,3 @@
-local utils = require "nv-tmikus.utils"
-
 return {
   {
     "akinsho/bufferline.nvim",
@@ -41,8 +39,6 @@ return {
       require("dashboard").setup(require "nv-tmikus.configs.dashboard")
     end
   },
-  utils.load_theme_when_needed("catppuccin", { "catppuccin/nvim", name = "catppuccin" }),
-  utils.load_theme_when_needed("material", "marko-cerovac/material.nvim"),
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
@@ -78,14 +74,6 @@ return {
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
-    },
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
     },
   },
   {

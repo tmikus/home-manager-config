@@ -55,7 +55,12 @@ in
     go
     lua-language-server
     nodejs_20
-    python312
+    (python311.withPackages (ps: with ps; [
+      pip
+      setuptools
+      wheel
+    ]))
+    # python311Packages.pip
     rustc
     rustfmt
     starship
@@ -66,7 +71,8 @@ in
     wget
     zig
   ] ++ (if pkgs.stdenv.hostPlatform.isDarwin then [] else with pkgs; [
-    pkgs.clang
+    clang
+    gnumake
   ]);
   
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

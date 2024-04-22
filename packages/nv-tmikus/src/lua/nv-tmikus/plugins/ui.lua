@@ -92,9 +92,19 @@ return {
     end
   },
   -- Highlight arguments
-  "m-demare/hlargs.nvim",
-  -- Floading window support
-  "ray-x/guihua.lua",
+  {
+    "m-demare/hlargs.nvim",
+    opts = {},
+    event = "VeryLazy",
+    dependencies = {
+      -- Floading window support
+      "ray-x/guihua.lua",
+    },
+  },
   -- Color highlighter for Neovim
-  "NvChad/nvim-colorizer.lua",
+  {
+    "NvChad/nvim-colorizer.lua",
+    opts = {},
+    event = "VeryLazy",
+  },
 }

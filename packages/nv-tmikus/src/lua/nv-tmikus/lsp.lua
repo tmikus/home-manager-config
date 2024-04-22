@@ -143,7 +143,6 @@ local lspconfig = require "lspconfig"
 local all_servers = {
   emmet_ls = {},
   eslint = {},
-  -- gopls = {},
   jsonls = {},
   lua_ls = {
     settings = {
@@ -223,8 +222,6 @@ local all_formatters = {
   eslint_d = {
     extra_args = { "--stdin", "--fix-to-stdout" },
   },
-  -- goimports = {},
-  -- gofmt = {},
   prettier = {
     filetypes = {
       "javascript",

@@ -10,6 +10,7 @@ return {
         end,
       },
       "williamboman/mason-lspconfig.nvim",
+      -- opts are needed or the setup won't be called
       { "j-hui/fidget.nvim", tag = "legacy", opts = {} },
       "folke/neodev.nvim",
     },

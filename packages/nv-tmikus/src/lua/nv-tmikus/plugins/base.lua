@@ -4,7 +4,8 @@ return {
   "tpope/vim-sleuth",
   "tpope/vim-surround",
   "andymass/vim-matchup",
-  "windwp/nvim-autopairs",
+  -- Opts are needed or the setup won't be called
+  { "windwp/nvim-autopairs", opts = {} },
   "yuttie/comfortable-motion.vim",
   "editorconfig/editorconfig-vim",
   "mattn/emmet-vim",

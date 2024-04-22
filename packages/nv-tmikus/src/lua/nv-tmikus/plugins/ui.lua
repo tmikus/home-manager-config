@@ -90,4 +90,6 @@ return {
       require("scrollbar").setup(require "nv-tmikus.configs.scrollbar")
     end
   },
+  -- Highlight argument's definitions and usages using Treesitter
+  "m-demare/hlargs.nvim",
 }

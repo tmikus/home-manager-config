@@ -4,6 +4,8 @@ lvim = {
     }
 }
 
+vim.g.mapleader = " "
+
 require "nv-tmikus.lazy"
 require "nv-tmikus.lsp"
 require "nv-tmikus.normalize"

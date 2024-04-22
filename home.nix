@@ -97,6 +97,7 @@ in
   #
   home.sessionVariables = {
     EDITOR = "nvim";
+    GOPROXY = "direct";
   };
 
   # Let Home Manager install and manage itself.

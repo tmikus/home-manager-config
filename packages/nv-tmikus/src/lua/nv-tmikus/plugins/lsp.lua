@@ -32,4 +32,11 @@ return {
       "saadparwaiz1/cmp_luasnip",
     },
   },
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = { "rafamadriz/friendly-snippets" },
+    config = function()
+      require "nv-tmikus.configs.nvim-cmp"
+    end
+  }
 }

@@ -60,12 +60,10 @@ in
       setuptools
       wheel
     ]))
-    # python311Packages.pip
     rustc
     rustfmt
     starship
     thefuck
-    tree-sitter
     unzip
     xclip
     wget

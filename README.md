@@ -6,6 +6,45 @@ It can be used on a local desktop, laptop or on a cloud desktop.
 
 The configuration is made portable with the use of the [Nix Home Manager](https://nix-community.github.io/home-manager/index.xhtm)
 
+Some of the tools installed by this configuration include:
+
+
+### [NeoVim](https://neovim.io/)
+
+![Neovim](docs/nvim.png)
+
+### [Bat](https://github.com/sharkdp/bat)
+
+A `cat` clone with a fancy style (and wings)
+
+### [zoxide](https://github.com/ajeetdsouza/zoxide)
+
+zoxide is a smarter cd command, inspired by z and autojump.
+
+It remembers which directories you use most frequently, so you can "jump" to them in just a few keystrokes.
+zoxide works on all major shells.
+
+### zsh terminal + Oh My ZSH + starship
+
+![ZSH](docs/zsh.png)
+
+### Programming languages
+
+* Go
+* NodeJS 20
+* Python 3.11 with `pip`, `setuptools` and `wheel`
+* Rust (rustc + rustfmt + cargo)
+* zig
+
+### Others
+
+* clang (not on MacOS)
+* gnumake (not on MacOS)
+* delta (used for a fancy git diff)
+* thefuck
+* unzip
+* wget
+
 ## Pre-requisites
 
 In order to use this configuration you'll need to first install the following tools:

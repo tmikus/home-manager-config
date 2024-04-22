@@ -3,7 +3,7 @@ require "nvchad.mappings"
 local wk = require "which-key"
 local telescope = require "telescope.builtin"
 
--- Better Vim default keymappings
+-- default keymappings
 local n_defaults = {
   -- General
   ["<c-s>"] = { "<cmd>w<cr>", "Save changes", nowait = true, silent = true },

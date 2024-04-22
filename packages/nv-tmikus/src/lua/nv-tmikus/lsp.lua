@@ -78,7 +78,7 @@ local on_attach = function(_, bufnr)
 
   -- Format on save
   vim.api.nvim_create_autocmd("BufWritePre", {
-    group = vim.api.nvim_create_augroup("BetterVimFormatOnSave", { clear = true }),
+    group = vim.api.nvim_create_augroup("TmikusFormatOnSave", { clear = true }),
     buffer = bufnr,
     callback = function()
       local should_format_on_save = true
@@ -119,7 +119,7 @@ local function get_custom_lsp_config(tbl)
 
   if has_no_settings_in_table then
     vim.notify_once(
-      "Better Vim: You should use `settings` to configure LSPs. Check the documentation at https://docs.bettervim.com/customization/installing-lsps",
+      "You should use `settings` to configure LSPs.",
       vim.log.levels.WARN
     )
     custom_settings = tbl
@@ -141,10 +141,10 @@ local lspconfig = require "lspconfig"
 --  the `settings` field of the server config. You must look up that documentation yourself:
 -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 local all_servers = {
-  tsserver = {},
-  eslint = {},
-  jsonls = {},
   emmet_ls = {},
+  eslint = {},
+  gopls = {},
+  jsonls = {},
   lua_ls = {
     settings = {
       Lua = {
@@ -163,6 +163,7 @@ local all_servers = {
       },
     },
   },
+  tsserver = {},
 }
 
 mason_lspconfig.setup {
@@ -222,6 +223,7 @@ local all_formatters = {
   eslint_d = {
     extra_args = { "--stdin", "--fix-to-stdout" },
   },
+  goimports = {},
   prettier = {
     filetypes = {
       "javascript",

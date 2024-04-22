@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+let
+  mkIf = lib.mkIf;
+in
 {
   imports = [
     ./git.nix
@@ -48,7 +51,6 @@
     # '')
     bat
     cargo
-    clang
     delta
     go
     lua-language-server
@@ -63,7 +65,9 @@
     xclip
     wget
     zig
-  ];
+  ] ++ (if pkgs.stdenv.hostPlatform.isDarwin then [] else with pkgs; [
+    pkgs.clang
+  ]);
   
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

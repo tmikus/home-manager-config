@@ -4,7 +4,7 @@ local telescope = require "telescope.builtin"
 -- Settings the leader
 vim.g.mapleader = " "
 
--- Better Vim default keymappings
+-- default keymappings
 local n_defaults = {
   -- General
   ["<c-s>"] = { "<cmd>w<cr>", "Save changes", nowait = true, silent = true },

@@ -141,28 +141,28 @@ local lspconfig = require "lspconfig"
 --  the `settings` field of the server config. You must look up that documentation yourself:
 -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 local all_servers = {
-    tsserver = {},
-    eslint = {},
-    jsonls = {},
-    emmet_ls = {},
-    lua_ls = {
-      settings = {
-        Lua = {
-          workspace = { checkThirdParty = false },
-          telemetry = { enable = false },
-          diagnostics = {
-            globals = { "vim" },
-          },
-          format = {
-            enable = true,
-            -- Possible options for format: https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/lua.template.editorconfig
-            defaultConfig = {
-              align_array_table = "none",
-            },
+  tsserver = {},
+  eslint = {},
+  jsonls = {},
+  emmet_ls = {},
+  lua_ls = {
+    settings = {
+      Lua = {
+        workspace = { checkThirdParty = false },
+        telemetry = { enable = false },
+        diagnostics = {
+          globals = { "vim" },
+        },
+        format = {
+          enable = true,
+          -- Possible options for format: https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/lua.template.editorconfig
+          defaultConfig = {
+            align_array_table = "none",
           },
         },
       },
     },
+  },
 }
 
 mason_lspconfig.setup {

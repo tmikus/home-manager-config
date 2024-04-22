@@ -6,7 +6,7 @@
     syntaxHighlighting.enable = true;
     plugins = [
       {
-	      # will source zsh-autosuggestions.plugin.zsh
+	# will source zsh-autosuggestions.plugin.zsh
         name = "zsh-autosuggestions";
         src = pkgs.fetchFromGitHub {
           owner = "zsh-users";

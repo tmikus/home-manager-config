@@ -7,7 +7,7 @@ M.get_file_name = function()
         return " " .. vim.fn.expand "%:t"
     end
 end
-    
+
 M.load_theme_when_needed = function(theme_name, theme_definition)
     if require("nv-tmikus.configs.theme").theme ~= theme_name then
         return {}

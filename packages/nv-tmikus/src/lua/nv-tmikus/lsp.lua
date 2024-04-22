@@ -224,6 +224,7 @@ local all_formatters = {
     extra_args = { "--stdin", "--fix-to-stdout" },
   },
   goimports = {},
+  gofmt = {},
   prettier = {
     filetypes = {
       "javascript",

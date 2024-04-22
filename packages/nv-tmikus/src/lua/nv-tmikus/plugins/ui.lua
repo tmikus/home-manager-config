@@ -27,10 +27,11 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("lualine").setup(require "nv-tmikus.configs.lualine")
-    end
+    dependencies = {
+      "kyazdani42/nvim-web-devicons",
+      "rlch/github-notifications.nvim",
+    },
+    opts = require "nv-tmikus.configs.lualine",
   },
   "folke/which-key.nvim",
   {

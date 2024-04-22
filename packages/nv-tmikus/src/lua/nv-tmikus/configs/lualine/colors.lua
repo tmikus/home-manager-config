@@ -11,6 +11,7 @@ local colors = {
     purple = "#c678dd",
     blue = "#51afef",
     red = "#ec5f67",
-  }
-  
-  return colors
+}
+
+return colors
+

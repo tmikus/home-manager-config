@@ -1,5 +1,6 @@
 vim.o.compatible = false
-vim.o.relativenumber = false
+-- vim.o.relativenumber = false
+vim.o.relativenumber = true
 vim.o.number = true
 vim.cmd "set t_Co=256"
 vim.o.termguicolors = true

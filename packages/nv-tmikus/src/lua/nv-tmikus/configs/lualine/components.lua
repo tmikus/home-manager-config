@@ -13,11 +13,24 @@ local function diff_source()
   end
 end
 
+local function list_supported_formatters(filetype)
+  local s = require "null-ls.sources"
+  local supported_formatters = s.get_supported(filetype, "formatting")
+  table.sort(supported_formatters)
+  return supported_formatters
+end
+
+
+local function list_supported_linters(filetype)
+  local s = require "null-ls.sources"
+  local supported_linters = s.get_supported(filetype, "diagnostics")
+  table.sort(supported_linters)
+  return supported_linters
+end
+
 local branch = icons.git.Branch
 
--- if lvim.colorscheme == "lunar" then
 branch = "%#SLGitIcon#" .. icons.git.Branch .. "%*" .. "%#SLBranchName#"
--- end
 
 return {
   mode = {
@@ -114,17 +127,13 @@ return {
         end
       end
 
-      -- TODO: Fix this
       -- add formatter
-    --   local formatters = require "lvim.lsp.null-ls.formatters"
-    --   local supported_formatters = formatters.list_registered(buf_ft)
-    --   vim.list_extend(buf_client_names, supported_formatters)
+      local supported_formatters = list_supported_formatters(buf_ft)
+      vim.list_extend(buf_client_names, supported_formatters)
 
-      -- TODO: Fix this
       -- add linter
-    --   local linters = require "lvim.lsp.null-ls.linters"
-    --   local supported_linters = linters.list_registered(buf_ft)
-    --   vim.list_extend(buf_client_names, supported_linters)
+      local supported_linters = list_supported_linters(buf_ft)
+      vim.list_extend(buf_client_names, supported_linters)
 
       local unique_client_names = table.concat(buf_client_names, ", ")
       local language_servers = string.format("[%s]", unique_client_names)
@@ -175,3 +184,4 @@ return {
     cond = nil,
   },
 }
+

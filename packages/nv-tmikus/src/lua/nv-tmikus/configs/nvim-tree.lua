@@ -41,7 +41,7 @@ return {
     },
   },
   filters = {
-    custom = { ".git", "node_modules" },
+    -- custom = { ".git", "node_modules" },
   },
   git = {
     enable = true,

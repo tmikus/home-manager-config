@@ -79,11 +79,7 @@ return {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
     },
-  },
-  {
-    "lewis6991/gitsigns.nvim",
-    opts = {},
-  },
+  }, 
   -- Fancy in-terminal scrollbar
   {
     "petertriho/nvim-scrollbar",

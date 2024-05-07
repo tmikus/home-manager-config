@@ -6,6 +6,7 @@ in
 {
   imports = [
     ./git.nix
+    ./intellij
     ./java.nix
     ./neovim.nix
     ./overlays.nix

@@ -216,12 +216,9 @@ lspconfig.emmet_ls.setup({
   },
 })
 
--- NullJS config
+-- NoneLS config
 local null_ls = require("null-ls")
 local all_formatters = {
-  eslint_d = {
-    extra_args = { "--stdin", "--fix-to-stdout" },
-  },
   prettier = {
     filetypes = {
       "javascript",
@@ -258,7 +255,11 @@ local all_formatters = {
     end,
   },
 }
-local formatting_sources = {}
+local formatting_sources = {
+  require("none-ls.diagnostics.eslint_d").with({
+    extra_args = { "--stdin", "--fix-to-stdout" },
+  })
+}
 for k, v in pairs(all_formatters) do
   table.insert(formatting_sources, null_ls.builtins.formatting[k].with(v))
 end

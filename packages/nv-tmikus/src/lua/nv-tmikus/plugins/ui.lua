@@ -98,11 +98,11 @@ return {
     },
   },
   -- Color highlighter for Neovim
-  {
-    "NvChad/nvim-colorizer.lua",
-    opts = {},
-    event = "VeryLazy",
-  },
+  -- {
+  --   "NvChad/nvim-colorizer.lua",
+  --   opts = {},
+  --   event = "VeryLazy",
+  -- },
   -- Rainbow delimiters
   {
     "HiPhish/rainbow-delimiters.nvim",

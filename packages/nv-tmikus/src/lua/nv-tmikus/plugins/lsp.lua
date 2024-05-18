@@ -16,6 +16,12 @@ return {
     },
   },
   {
+    "rshkarin/mason-nvim-lint",
+    dependencies = {
+      "mfussenegger/nvim-lint",
+    },
+  },
+  {
     "jay-babu/mason-null-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {

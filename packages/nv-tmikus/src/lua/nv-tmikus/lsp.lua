@@ -294,3 +294,6 @@ require("mason-null-ls").setup({
 require("go").setup()
 
 require("lspconfig.ui.windows").default_options.border = "single"
+
+-- Mason NVIM Lint
+require("mason-nvim-lint").setup(require("nv-tmikus.configs.nvim-lint"))

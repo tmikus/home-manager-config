@@ -60,6 +60,22 @@ The instructions depend on the OS you're on. For NixOS you don't need to do anyt
 * [Windows - WSL2](https://nixos.org/download/#nix-install-windows)
 * [More](https://nixos.org/download/#nix-more)
 
+**Additional step on AL2**
+
+On AL2 you'll need to also run the following commands after installing Nix Package Manager in order to create the right user group and add you to it:
+
+```bash
+sudo groupadd -r nixbld
+```
+
+Then run to add all users to the `nixbld` group:
+
+```bash
+for n in $(seq 1 10); do sudo useradd -c "Nix build user $n" \
+    -d /var/empty -g nixbld -G nixbld -M -N -r -s "$(which nologin)" \
+    nixbld$n; done
+```
+
 
 **Nix Home Manager**
 

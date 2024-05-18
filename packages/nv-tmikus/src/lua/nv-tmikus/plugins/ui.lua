@@ -103,4 +103,12 @@ return {
     opts = {},
     event = "VeryLazy",
   },
+  -- Rainbow delimiters
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    -- opts = require "nv-tmikus.configs.delimiters",
+    config = function()
+      require("rainbow-delimiters.setup").setup(require "nv-tmikus.configs.delimiters")
+    end
+  },
 }

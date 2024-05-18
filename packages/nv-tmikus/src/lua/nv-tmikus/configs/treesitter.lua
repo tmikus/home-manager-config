@@ -1,6 +1,13 @@
 return {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = {},
+  ensure_installed = {
+    "c",
+    "go",
+    "lua",
+    "vim",
+    "vimdoc",
+    "query",
+  },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = true,
@@ -16,6 +23,9 @@ return {
       scope_incremental = '<c-s>',
       node_decremental = '<M-space>',
     },
+  },
+  rainbow = {
+    enable = false,
   },
   textobjects = {
     select = {

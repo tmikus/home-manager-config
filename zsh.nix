@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   programs.zsh = {
@@ -31,14 +31,20 @@
       # Set PATH, MANPATH, etc., for Homebrew.
       [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
-    shellAliases = {
-      bb="brazil-build $@";
-      bbb="brazil-recursive-cmd --allPackages brazil-build $@";
-      bws="brazil workspace $@";
-      morning="ssh-add -D && mwinit --aea && ssh-add --apple-use-keychain ~/.ssh/id_ecdsa";
-      reset_nvim="rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.config/nvim ~/.cache/nvim";
-      update_db="sudo /usr/libexec/locate.updatedb";
-    };
+    shellAliases = lib.mkMerge [
+      {
+        bb="brazil-build $@";
+        bbb="brazil-recursive-cmd --allPackages brazil-build $@";
+        bws="brazil workspace $@";
+        reset_nvim="rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.config/nvim ~/.cache/nvim";
+        update_db="sudo /usr/libexec/locate.updatedb";
+      }
+      (if pkgs.stdenv.hostPlatform.isDarwin then {
+        morning="ssh-add -D && mwinit && ssh-add --apple-use-keychain ~/.ssh/id_ecdsa";
+      } else {
+        morning="mwinit -o";
+      })
+    ];
     oh-my-zsh = {
       enable = true;
       plugins = [

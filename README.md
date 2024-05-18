@@ -96,7 +96,7 @@ Once you have the Home Manager installed, simply clone this repository in `~/.co
 cd ~/.config/
 rm -rf home-manager # Remove prior Home Manager configuration
 nix-shell -p git # Open a new shell with git enabled
-git clone git@github.com:tmikus/nix-config.git home-manager
+git clone https://github.com/tmikus/nix-config.git home-manager
 exit # exit the git-enabled shell
 
 home-manager switch

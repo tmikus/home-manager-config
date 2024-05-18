@@ -216,6 +216,10 @@ lspconfig.emmet_ls.setup({
   },
 })
 
+lspconfig.lua_ls.setup({
+  cmd = {os.getenv( "HOME" ) .. "/.nix-profile/bin/lua-language-server"}
+})
+
 -- NoneLS config
 local null_ls = require("null-ls")
 local all_formatters = {

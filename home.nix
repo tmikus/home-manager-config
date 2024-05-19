@@ -11,6 +11,7 @@ in
     ./neovim.nix
     ./overlays.nix
     ./starship.nix
+    ./tmux.nix
     ./wezterm
     ./zoxide.nix
     ./zsh.nix
@@ -56,6 +57,7 @@ in
     go
     lua-language-server
     nodejs_20
+    plocate
     (python311.withPackages (ps: with ps; [
       pip
       setuptools

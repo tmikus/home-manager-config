@@ -162,6 +162,7 @@ local all_servers = {
       },
     },
   },
+  rust_analyzer = {},
   tsserver = {},
 }
 
@@ -218,6 +219,10 @@ lspconfig.emmet_ls.setup({
 
 lspconfig.lua_ls.setup({
   cmd = {os.getenv( "HOME" ) .. "/.nix-profile/bin/lua-language-server"}
+})
+
+lspconfig.rust_analyzer.setup({
+  cmd = {os.getenv("HOME") .. "/.nix-profile/bin/rust-analyzer"}
 })
 
 -- NoneLS config

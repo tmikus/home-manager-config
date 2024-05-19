@@ -62,6 +62,7 @@ in
       wheel
     ]))
     ripgrep
+    rust-analyzer
     rustc
     rustfmt
     starship

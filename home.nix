@@ -57,7 +57,6 @@ in
     go
     lua-language-server
     nodejs_20
-    plocate
     (python311.withPackages (ps: with ps; [
       pip
       setuptools
@@ -77,6 +76,7 @@ in
   ] ++ (if pkgs.stdenv.hostPlatform.isDarwin then [] else with pkgs; [
     clang
     gnumake
+    plocate
   ]);
   
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

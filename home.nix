@@ -54,7 +54,10 @@ in
     bat
     cargo
     delta
+    direnv
+    fzf
     go
+    jq
     lua-language-server
     nodejs_20
     (python311.withPackages (ps: with ps; [

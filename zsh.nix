@@ -38,6 +38,7 @@
         bws="brazil workspace $@";
         reset_nvim="rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.config/nvim ~/.cache/nvim";
         update_db="sudo /usr/libexec/locate.updatedb";
+        update_home_manager="nix-channel --update home-manager && home-manager switch";
       }
       (if pkgs.stdenv.hostPlatform.isDarwin then {
         morning="ssh-add -D && mwinit && ssh-add --apple-use-keychain ~/.ssh/id_ecdsa";

@@ -10,9 +10,9 @@ local n_defaults = {
   ["<c-s>"] = { "<cmd>w<cr>", "Save changes", nowait = true, silent = true },
   ["<leader>cl"] = { "<cmd>nohl<cr>", " Clear search highlights" },
   -- Telescope shortcuts
-  ["<c-p>"] = { telescope.find_files, "Find file" },
+  ["<C-S-n>"] = { telescope.find_files, "Find file" },
   ["<c-f>"] = { telescope.live_grep, "Find word" },
-  ["<c-o>"] = { telescope.buffers, "Show buffers" },
+  ["<c-e>"] = { telescope.buffers, "Show buffers" },
   ["<leader>q"] = { "<cmd>:Bdelete<cr>", " Close buffer, not window", noremap = true },
   ["<leader>/"] = {
     function()
@@ -24,9 +24,10 @@ local n_defaults = {
   },
   -- File explorer shortcuts
   ["<c-n>"] = { "<cmd>NvimTreeToggle<cr>", "Open file explorer", noremap = true },
-  -- Open nvim config
-  ["<leader>ev"] = { "<cmd>e $MYVIMRC<cr>", " Open init.lua" },
-  ["<leader>sv"] = { "<cmd>lua reload_nvim_conf()<cr>", "累Reload neovim config" },
+  ["<c-1>"] = { "<cmd>NvimTreeToggle<cr>", "Open file explorer", noremap = true },
+  -- Splitting files
+  ["<leader>sh"] = { "<cmd>split<cr>", "Split the window horizontally" },
+  ["<leader>sv"] = { "<cmd>vsplit<cr>", "Split the window vertically" },
   -- Navigate between buffers
   ["<c-h>"] = { "<c-w>h", "Navigate to the buffer (left)" },
   ["<c-l>"] = { "<c-w>l", "Navigate to the buffer (right)" },

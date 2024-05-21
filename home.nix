@@ -5,6 +5,7 @@ let
 in
 {
   imports = [
+    ./alacritty
     ./git.nix
     ./intellij
     ./java.nix

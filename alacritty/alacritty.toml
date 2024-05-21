@@ -1,0 +1,10 @@
+[font]
+size = 14
+
+[font.normal]
+family = "FiraCode Nerd Font"
+
+[scrolling]
+history = 100000
+multiplier = 1
+

@@ -13,9 +13,16 @@ Some of the tools installed by this configuration include:
 
 ![Neovim](docs/nvim.png)
 
+
 ### [Bat](https://github.com/sharkdp/bat)
 
 A `cat` clone with a fancy style (and wings)
+
+
+### [tmux](https://github.com/tmux/tmux/wiki)
+
+![Tmux](docs/tmux.png)
+
 
 ### [zoxide](https://github.com/ajeetdsouza/zoxide)
 
@@ -24,9 +31,11 @@ zoxide is a smarter cd command, inspired by z and autojump.
 It remembers which directories you use most frequently, so you can "jump" to them in just a few keystrokes.
 zoxide works on all major shells.
 
+
 ### zsh terminal + Oh My ZSH + starship
 
 ![ZSH](docs/zsh.png)
+
 
 ### Programming languages
 

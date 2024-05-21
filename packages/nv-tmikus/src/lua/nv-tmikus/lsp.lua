@@ -163,6 +163,7 @@ local all_servers = {
       },
     },
   },
+  markdown_oxide = {},
   rust_analyzer = {},
   tsserver = {},
 }

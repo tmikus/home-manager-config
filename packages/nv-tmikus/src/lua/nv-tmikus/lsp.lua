@@ -143,6 +143,7 @@ local lspconfig = require "lspconfig"
 local all_servers = {
   emmet_ls = {},
   eslint = {},
+  gopls = {},
   jsonls = {},
   lua_ls = {
     settings = {
@@ -228,6 +229,7 @@ lspconfig.rust_analyzer.setup({
 -- NoneLS config
 local null_ls = require("null-ls")
 local all_formatters = {
+  goimports = {},
   prettier = {
     filetypes = {
       "javascript",

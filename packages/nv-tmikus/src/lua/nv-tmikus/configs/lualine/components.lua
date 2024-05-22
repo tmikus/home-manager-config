@@ -13,21 +13,6 @@ local function diff_source()
   end
 end
 
-local function list_supported_formatters(filetype)
-  local s = require "null-ls.sources"
-  local supported_formatters = s.get_supported(filetype, "formatting")
-  table.sort(supported_formatters)
-  return supported_formatters
-end
-
-
-local function list_supported_linters(filetype)
-  local s = require "null-ls.sources"
-  local supported_linters = s.get_supported(filetype, "diagnostics")
-  table.sort(supported_linters)
-  return supported_linters
-end
-
 local branch = icons.git.Branch
 
 branch = "%#SLGitIcon#" .. icons.git.Branch .. "%*" .. "%#SLBranchName#"
@@ -105,49 +90,6 @@ return {
     end,
     cond = conditions.hide_in_width,
   },
-  lsp = {
-    function()
-      local buf_clients = vim.lsp.get_active_clients { bufnr = 0 }
-      if #buf_clients == 0 then
-        return "LSP Inactive"
-      end
-
-      local buf_ft = vim.bo.filetype
-      local buf_client_names = {}
-      local copilot_active = false
-
-      -- add client
-      for _, client in pairs(buf_clients) do
-        if client.name ~= "null-ls" and client.name ~= "copilot" then
-          table.insert(buf_client_names, client.name)
-        end
-
-        if client.name == "copilot" then
-          copilot_active = true
-        end
-      end
-
-      -- add formatter
-      local supported_formatters = list_supported_formatters(buf_ft)
-      vim.list_extend(buf_client_names, supported_formatters)
-
-      -- add linter
-      local supported_linters = list_supported_linters(buf_ft)
-      vim.list_extend(buf_client_names, supported_linters)
-
-      local unique_client_names = table.concat(buf_client_names, ", ")
-      local language_servers = string.format("[%s]", unique_client_names)
-
-      if copilot_active then
-        language_servers = language_servers .. "%#SLCopilot#" .. " " .. icons.git.Octoface .. "%*"
-      end
-
-      return language_servers
-    end,
-    color = { gui = "bold" },
-    cond = conditions.hide_in_width,
-  },
-  location = { "location" },
   progress = {
     "progress",
     fmt = function()

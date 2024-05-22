@@ -98,7 +98,6 @@ styles.lvim = {
     },
     lualine_x = {
       components.diagnostics,
-      components.lsp,
       components.spaces,
       components.filetype,
     },
@@ -120,7 +119,6 @@ styles.lvim = {
     },
     lualine_x = {
       components.diagnostics,
-      components.lsp,
       components.spaces,
       components.filetype,
     },

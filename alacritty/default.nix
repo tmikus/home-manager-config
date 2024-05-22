@@ -1,5 +1,8 @@
 { config, ... }:
 
 {
-  home.file.".alacritty.toml" = { source = ./alacritty.toml; };
+  xdg.configFile."alacritty" = {
+    recursive = true;
+    source = ./src;
+  };
 }

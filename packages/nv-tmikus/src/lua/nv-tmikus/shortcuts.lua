@@ -23,16 +23,19 @@ local n_defaults = {
     "Find word in current buffer",
   },
   -- File explorer shortcuts
-  ["<c-n>"] = { "<cmd>NvimTreeToggle<cr>", "Open file explorer", noremap = true },
   ["<c-1>"] = { "<cmd>NvimTreeToggle<cr>", "Open file explorer", noremap = true },
   -- Splitting files
   ["<leader>sh"] = { "<cmd>split<cr>", "Split the window horizontally" },
   ["<leader>sv"] = { "<cmd>vsplit<cr>", "Split the window vertically" },
   -- Navigate between buffers
-  ["<c-h>"] = { "<c-w>h", "Navigate to the buffer (left)" },
-  ["<c-l>"] = { "<c-w>l", "Navigate to the buffer (right)" },
-  ["<c-j>"] = { "<c-w>j", "Navigate to the buffer (down)" },
-  ["<c-k>"] = { "<c-w>k", "Navigate to the buffer (top)" },
+  ["<C-LEFT>"] = { "<c-w>h", "Navigate to the buffer (left)" },
+  ["<C-RIGHT>"] = { "<c-w>l", "Navigate to the buffer (right)" },
+  ["<C-DOWN>"] = { "<c-w>j", "Navigate to the buffer (down)" },
+  ["<C-UP>"] = { "<c-w>k", "Navigate to the buffer (top)" },
+  -- ["<c-h>"] = { "<c-w>h", "Navigate to the buffer (left)" },
+  -- ["<c-l>"] = { "<c-w>l", "Navigate to the buffer (right)" },
+  -- ["<c-j>"] = { "<c-w>j", "Navigate to the buffer (down)" },
+  -- ["<c-k>"] = { "<c-w>k", "Navigate to the buffer (top)" },
   -- Jumping
   ["<leader>o"] = { "<c-o>", "Jump: Go to older cursor position", noremap = true },
   ["<leader>i"] = { "<c-i>", "Jump: Go to newer cursor position", noremap = true },
@@ -41,6 +44,9 @@ local n_defaults = {
   ["<leader>dn"] = { vim.diagnostic.goto_next, "Go to next diagnostic message" },
   ["<leader>dm"] = { vim.diagnostic.open_float, "Open floating diagnostic message" },
   ["<leader>dl"] = { vim.diagnostic.setloclist, " Show diagnostics list" },
+  -- Git Integration
+  -- ["<C-k>"] = { "<cmd>DiffviewOpen<cr>", "Open the git diff", noremap = true },
+  -- ["<C-S-k>"] = { "<cmd>DiffviewClose<cr>", "Close the git diff", noremap = true },
 }
 
 local i_defaults = {

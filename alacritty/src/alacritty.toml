@@ -1,3 +1,7 @@
+import = [
+  "~/.config/alacritty/themes/oceanic_next.toml"
+]
+
 [font]
 size = 14
 

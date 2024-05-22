@@ -1,8 +1,5 @@
 { lib, stdenv, pkgs }:
 
-let
-  custom = ./custom;
-in
 stdenv.mkDerivation {
   pname = "nv-tmikus";
   version = "1.0";

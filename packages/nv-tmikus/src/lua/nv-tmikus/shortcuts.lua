@@ -1,5 +1,6 @@
 local wk = require "which-key"
 local telescope = require "telescope.builtin"
+local neogit = require "neogit"
 
 -- Settings the leader
 vim.g.mapleader = " "
@@ -45,6 +46,17 @@ local n_defaults = {
   ["<leader>dm"] = { vim.diagnostic.open_float, "Open floating diagnostic message" },
   ["<leader>dl"] = { vim.diagnostic.setloclist, " Show diagnostics list" },
   -- Git Integration
+  ["<C-k>"] = {
+    function()
+      if neogit.status:is_open() then
+        local instance = neogit.status.instance()
+        instance:close()
+      else
+        neogit.open()
+      end
+    end,
+    "Toggle the Neogit popup",
+  };
   -- ["<C-k>"] = { "<cmd>DiffviewOpen<cr>", "Open the git diff", noremap = true },
   -- ["<C-S-k>"] = { "<cmd>DiffviewClose<cr>", "Close the git diff", noremap = true },
 }

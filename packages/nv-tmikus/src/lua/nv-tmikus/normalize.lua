@@ -26,3 +26,4 @@ vim.o.updatetime = 300
 vim.o.signcolumn = "yes"
 vim.o.splitbelow = true
 vim.o.splitright = true
+

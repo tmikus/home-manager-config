@@ -111,3 +111,23 @@ exit # exit the git-enabled shell
 
 home-manager switch
 ```
+
+## Known issues
+
+### Initial home-manager switch fails
+
+From experience the main reason why the initial `home-manager switch` fails is because you already have some files that would clash with new configuration.
+For example, you might already have a `.zshrc`, `.zprofile` or `.zshenv` files in your home folder.
+
+To fix this please make a backup of these files by renaming them to something like `.zshrc.backup-before-nix` and try again.
+
+### Nix not found after MacOS update
+
+Sometimes upating MacOS can result in Nix being removed from the `/etc/zshrc` file. To recover it simply add the following at the back of the `/etc/zshrc` file:
+```
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nixs
+```

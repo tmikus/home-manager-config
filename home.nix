@@ -16,6 +16,7 @@ in
     ./wezterm
     ./zoxide.nix
     ./zsh.nix
+    ./zed
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -82,7 +83,7 @@ in
     gnumake
     plocate
   ]);
-  
+
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {

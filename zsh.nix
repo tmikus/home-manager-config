@@ -23,10 +23,16 @@
     initExtra = ''
       # Add mechanic to the environment
       [ -f "$HOME/.local/share/mechanic/complete.zsh" ] && source "$HOME/.local/share/mechanic/complete.zsh"
+      
+      if command -v mise &> /dev/null
+      then
+        eval "$(mise activate zsh)"
+      fi
+      [ -f "$HOME/.local/share/mise/completions.zsh" ] && source "$HOME/.local/share/mise/completions.zsh"
     '';
     profileExtra = ''
       # Add toolbox to PATH
-      export PATH="$PATH:${builtins.getEnv "HOME"}/.toolbox/bin" 
+      export PATH="$PATH:${builtins.getEnv "HOME"}/.toolbox/bin:${builtins.getEnv "HOME"}/.local/bin" 
 
       # Set PATH, MANPATH, etc., for Homebrew.
       [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"

@@ -24,7 +24,7 @@
           set -g @catppuccin_window_current_fill "number"
           set -g @catppuccin_window_current_text "#W"
 
-          set -g @catppuccin_status_modules_right "directory user"
+          set -g @catppuccin_status_modules_right "host session"
           set -g @catppuccin_status_left_separator  " "
           set -g @catppuccin_status_right_separator ""
           set -g @catppuccin_status_fill "icon"
@@ -38,6 +38,7 @@
       # bind CTRL+B,R to reload the tmux config
       unbind r
       bind r source-file ~/.config/tmux/tmux.conf
+      bind -n C-k clear-history
 
       # enable mouse control
       set -g mouse on
@@ -51,4 +52,3 @@
     '';
   };
 }
-

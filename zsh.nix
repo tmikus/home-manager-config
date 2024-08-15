@@ -47,7 +47,7 @@
         update_home_manager="nix-channel --update home-manager && home-manager switch";
       }
       (if pkgs.stdenv.hostPlatform.isDarwin then {
-        morning="ssh-add -D && mwinit && ssh-add --apple-use-keychain ~/.ssh/id_ecdsa";
+        morning="ssh-add -D && mwinit --fido2 && ssh-add --apple-use-keychain ~/.ssh/id_ecdsa";
       } else {
         morning="mwinit -o";
       })

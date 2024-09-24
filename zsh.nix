@@ -29,6 +29,9 @@
         eval "$(mise activate zsh)"
       fi
       [ -f "$HOME/.local/share/mise/completions.zsh" ] && source "$HOME/.local/share/mise/completions.zsh"
+
+      # Remove OhMyZsh alias that is used by Git Kraken
+      unalias gk
     '';
     profileExtra = ''
       # Add toolbox to PATH

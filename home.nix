@@ -77,6 +77,8 @@ in
     xclip
     wget
     zig
+    clang
+    gnumake
   ] ++ (if pkgs.stdenv.hostPlatform.isDarwin then [] else with pkgs; [
     clang
     gnumake

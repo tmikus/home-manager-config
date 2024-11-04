@@ -6,7 +6,7 @@
     syntaxHighlighting.enable = true;
     plugins = [
       {
-	# will source zsh-autosuggestions.plugin.zsh
+        # will source zsh-autosuggestions.plugin.zsh
         name = "zsh-autosuggestions";
         src = pkgs.fetchFromGitHub {
           owner = "zsh-users";
@@ -23,7 +23,7 @@
     initExtra = ''
       # Add mechanic to the environment
       [ -f "$HOME/.local/share/mechanic/complete.zsh" ] && source "$HOME/.local/share/mechanic/complete.zsh"
-      
+
       if command -v mise &> /dev/null
       then
         eval "$(mise activate zsh)"
@@ -35,7 +35,7 @@
     '';
     profileExtra = ''
       # Add toolbox to PATH
-      export PATH="$PATH:${builtins.getEnv "HOME"}/.toolbox/bin:${builtins.getEnv "HOME"}/.local/bin" 
+      export PATH="$PATH:${builtins.getEnv "HOME"}/.toolbox/bin:${builtins.getEnv "HOME"}/.local/bin:${builtins.getEnv "HOME"}/Library/Application Support/JetBrains/Toolbox/scripts"
 
       # Set PATH, MANPATH, etc., for Homebrew.
       [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"

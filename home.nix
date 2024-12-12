@@ -55,6 +55,7 @@ in
     bat
     cargo
     delta
+    deno
     direnv
     fzf
     go

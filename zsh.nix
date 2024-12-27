@@ -32,6 +32,11 @@
 
       # Remove OhMyZsh alias that is used by Git Kraken
       unalias gk
+
+      # Add Ghostty integration
+      if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+        source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
+      fi
     '';
     profileExtra = ''
       # Add toolbox to PATH

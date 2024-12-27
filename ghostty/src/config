@@ -1,0 +1,5 @@
+font-family = "FiraCode Nerd Font"
+font-size = 14
+macos-titlebar-style = tabs
+scrollback-limit = 100000
+theme = dark:catppuccin-mocha,light:catppuccin-latte

@@ -6,6 +6,7 @@ in
 {
   imports = [
     ./alacritty
+    ./ghostty
     ./git.nix
     ./intellij
     ./java.nix

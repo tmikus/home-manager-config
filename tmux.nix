@@ -35,7 +35,25 @@
       }
     ];
     extraConfig = ''
-      # bind CTRL+B,R to reload the tmux config
+      # The section below is greatly influenced by https://hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/
+      # remap prefix from 'C-b' to 'C-a'
+      unbind C-b
+      set-option -g prefix C-a
+      bind-key C-a send-prefix
+
+      # split panes using | and -
+      bind | split-window -h
+      bind - split-window -v
+      unbind '"'
+      unbind %
+
+      # switch panes using Alt-arrow without prefix
+      bind -n M-Left select-pane -L
+      bind -n M-Right select-pane -R
+      bind -n M-Up select-pane -U
+      bind -n M-Down select-pane -D
+
+      # bind CTRL+A,R to reload the tmux config
       unbind r
       bind r source-file ~/.config/tmux/tmux.conf
       bind -n C-k clear-history
@@ -49,6 +67,20 @@
       # make sure that windows and panes start from 1 not 0
       set -g base-index 1
       setw -g pane-base-index 1
+
+      # don't rename windows automatically
+      set-option -g allow-rename off
+
+      # Bind Ctrl+{number} to switch to window {number}
+      bind -n C-1 select-window -t :1
+      bind -n C-2 select-window -t :2
+      bind -n C-3 select-window -t :3
+      bind -n C-4 select-window -t :4
+      bind -n C-5 select-window -t :5
+      bind -n C-6 select-window -t :6
+      bind -n C-7 select-window -t :7
+      bind -n C-8 select-window -t :8
+      bind -n C-9 select-window -t :9
     '';
   };
 }

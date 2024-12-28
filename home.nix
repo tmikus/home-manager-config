@@ -63,7 +63,7 @@ in
     jq
     lua-language-server
     nodejs_20
-    (python311.withPackages (ps: with ps; [
+    (python313.withPackages (ps: with ps; [
       pip
       setuptools
       wheel

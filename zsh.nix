@@ -37,6 +37,11 @@
       if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
         source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
       fi
+
+      # Import optional config
+      if [[ -f "$HOME/.local-zshrc" ]]; then
+        source "$HOME/.local-zshrc"
+      fi
     '';
     profileExtra = ''
       # Add toolbox to PATH

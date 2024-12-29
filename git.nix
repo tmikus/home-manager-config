@@ -1,5 +1,3 @@
-{ config, pkgs, ... }:
-
 {
   programs.git = {
     enable = true;
@@ -28,7 +26,7 @@
         conflictstyle = "diff3";
       };
 
-      # Other 
+      # Other
       init = {
         defaultBranch = "main";
       };

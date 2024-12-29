@@ -1,4 +1,4 @@
-{ lib, stdenv, pkgs }:
+{ lib, stdenv }:
 
 stdenv.mkDerivation {
   pname = "nv-tmikus";
@@ -19,4 +19,3 @@ stdenv.mkDerivation {
     license = licenses.gpl3;
   };
 }
-

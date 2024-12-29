@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   # Neovim
@@ -12,4 +12,3 @@
     source = "${pkgs.nv-tmikus}";
   };
 }
-

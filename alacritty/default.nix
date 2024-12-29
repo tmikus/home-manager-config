@@ -1,5 +1,3 @@
-{ config, ... }:
-
 {
   xdg.configFile."alacritty" = {
     recursive = true;

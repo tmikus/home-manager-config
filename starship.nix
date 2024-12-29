@@ -1,5 +1,3 @@
-{ config, pkgs, ... }:
-
 {
   programs.starship = {
     enable = true;
@@ -16,7 +14,7 @@
         show_always = false;
       };
 
-  
+
       # Shows current directory
       directory = {
         truncation_symbol = "…/";

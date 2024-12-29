@@ -1,8 +1,5 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
-let
-  mkIf = lib.mkIf;
-in
 {
   imports = [
     ./alacritty

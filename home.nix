@@ -62,6 +62,8 @@ in
     go
     jq
     lua-language-server
+    nil
+    nixd
     nodejs_20
     (python313.withPackages (ps: with ps; [
       pip

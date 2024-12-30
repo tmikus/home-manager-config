@@ -55,6 +55,7 @@
         bb = "brazil-build $@";
         bbb = "brazil-recursive-cmd --allPackages brazil-build $@";
         bws = "brazil workspace $@";
+        cat = "bat";
         reset_nvim = "rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.config/nvim ~/.cache/nvim";
         update_db = "sudo /usr/libexec/locate.updatedb";
         update_home_manager = "nix-channel --update home-manager && home-manager switch";

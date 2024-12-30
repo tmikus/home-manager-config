@@ -14,7 +14,6 @@
         show_always = false;
       };
 
-
       # Shows current directory
       directory = {
         truncation_symbol = "…/";

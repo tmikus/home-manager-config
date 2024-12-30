@@ -52,18 +52,23 @@
     '';
     shellAliases = lib.mkMerge [
       {
-        bb="brazil-build $@";
-        bbb="brazil-recursive-cmd --allPackages brazil-build $@";
-        bws="brazil workspace $@";
-        reset_nvim="rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.config/nvim ~/.cache/nvim";
-        update_db="sudo /usr/libexec/locate.updatedb";
-        update_home_manager="nix-channel --update home-manager && home-manager switch";
+        bb = "brazil-build $@";
+        bbb = "brazil-recursive-cmd --allPackages brazil-build $@";
+        bws = "brazil workspace $@";
+        reset_nvim = "rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.config/nvim ~/.cache/nvim";
+        update_db = "sudo /usr/libexec/locate.updatedb";
+        update_home_manager = "nix-channel --update home-manager && home-manager switch";
       }
-      (if pkgs.stdenv.hostPlatform.isDarwin then {
-        morning="ssh-add -D && mwinit -f && ssh-add --apple-use-keychain ~/.ssh/id_ecdsa";
-      } else {
-        morning="mwinit -o";
-      })
+      (
+        if pkgs.stdenv.hostPlatform.isDarwin then
+          {
+            morning = "ssh-add -D && mwinit -f && ssh-add --apple-use-keychain ~/.ssh/id_ecdsa";
+          }
+        else
+          {
+            morning = "mwinit -o";
+          }
+      )
     ];
     oh-my-zsh = {
       enable = true;

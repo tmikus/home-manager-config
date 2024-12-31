@@ -112,6 +112,14 @@ exit # exit the git-enabled shell
 home-manager switch
 ```
 
+## Cleaning-up disk space
+
+The longer you use the Home Manager the more disk space will be used by old packages. To free up that space you can run the following command:
+
+```
+nix-store --gc
+```
+
 ## Known issues
 
 ### Initial home-manager switch fails
@@ -123,7 +131,7 @@ To fix this please make a backup of these files by renaming them to something li
 
 ### Nix not found after MacOS update
 
-Sometimes upating MacOS can result in Nix being removed from the `/etc/zshrc` file. To recover it simply add the following at the back of the `/etc/zshrc` file:
+Sometimes upating MacOS can result in Nix being removed from the `/etc/zshrc` file. To recover it simply run the `./restore-nix.sh` or add the following at the back of the `/etc/zshrc` file:
 ```
 # Nix
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then

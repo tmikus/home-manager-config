@@ -54,7 +54,6 @@
       #   echo "Hello, ${config.home.username}!"
       # '')
       bat
-      cargo
       delta
       deno
       direnv
@@ -74,9 +73,7 @@
         ]
       ))
       ripgrep
-      rust-analyzer
-      rustc
-      rustfmt
+      rustup
       starship
       thefuck
       tree-sitter

@@ -45,7 +45,7 @@
     '';
     profileExtra = ''
       # Add toolbox to PATH
-      export PATH="$PATH:${builtins.getEnv "HOME"}/.toolbox/bin:${builtins.getEnv "HOME"}/.local/bin:${builtins.getEnv "HOME"}/Library/Application Support/JetBrains/Toolbox/scripts"
+      export PATH="$PATH:${builtins.getEnv "HOME"}/.toolbox/bin:${builtins.getEnv "HOME"}/.local/bin:${builtins.getEnv "HOME"}/Library/Application Support/JetBrains/Toolbox/scripts:/usr/local/bin"
 
       # Set PATH, MANPATH, etc., for Homebrew.
       [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"

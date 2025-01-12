@@ -36,7 +36,12 @@ return {
     end
     -- opts = require "nv-tmikus.configs.lualine",
   },
-  "folke/which-key.nvim",
+  {
+    "folke/which-key.nvim",
+    dependencies = {
+      "echasnovski/mini.icons",
+    },
+  },
   {
     "glepnir/dashboard-nvim",
     config = function()

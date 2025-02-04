@@ -64,8 +64,7 @@
       nil
       nixd
       nixfmt-rfc-style
-      nodejs_20
-      (python313.withPackages (
+      (python312.withPackages (
         ps: with ps; [
           pip
           setuptools

@@ -61,6 +61,7 @@
       go
       jq
       lua-language-server
+      mise
       nil
       nixd
       nixfmt-rfc-style

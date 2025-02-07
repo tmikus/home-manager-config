@@ -50,7 +50,9 @@
     '';
     profileExtra = ''
       # Add toolbox to PATH
-      export PATH="$PATH:${builtins.getEnv "HOME"}/.toolbox/bin:${builtins.getEnv "HOME"}/.local/bin:${builtins.getEnv "HOME"}/Library/Application Support/JetBrains/Toolbox/scripts:/usr/local/bin"
+      export GOPATH="${builtins.getEnv "HOME"}/go"
+      export PATH="$PATH:${builtins.getEnv "HOME"}/.toolbox/bin:${builtins.getEnv "HOME"}/.local/bin:${builtins.getEnv "HOME"}/Library/Application Support/JetBrains/Toolbox/scripts:/usr/local/bin/:$GOPATH/bin"
+      export PATH="$PATH:/Users/tmikus/Library/Android/sdk/platform-tools"
 
       # Set PATH, MANPATH, etc., for Homebrew.
       [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"

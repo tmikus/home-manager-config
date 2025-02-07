@@ -65,13 +65,6 @@
       nil
       nixd
       nixfmt-rfc-style
-      (python312.withPackages (
-        ps: with ps; [
-          pip
-          setuptools
-          wheel
-        ]
-      ))
       ripgrep
       rustup
       starship

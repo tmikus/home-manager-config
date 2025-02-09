@@ -21,15 +21,17 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  home.packages = with pkgs; home.packages ++ (
-    if pkgs.stdenv.hostPlatform.isDarwin then
-      [ ]
-    else
-      with pkgs;
-      [
-        clang
-        gnumake
-        plocate
-      ]
-  );
+  home.packages =
+    with pkgs;
+    (
+      if pkgs.stdenv.hostPlatform.isDarwin then
+        [ ]
+      else
+        with pkgs;
+        [
+          clang
+          gnumake
+          plocate
+        ]
+    );
 }

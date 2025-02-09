@@ -1,6 +1,14 @@
-{ pkgs, ... }:
+{ config
+, pkgs
+, ... }:
 
 {
+  nixpkgs.config = {
+    # Allow unfree packages
+    allowUnfree = true;
+  };
+
+
   imports = [
     ./alacritty
     ./ghostty
@@ -82,6 +90,15 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+  };
+  xdg.configFile."autostart/jetbrains-toolbox.desktop" = {
+    source = "${pkgs.jetbrains-toolbox}/share/applications/jetbrains-toolbox.desktop";
+  };
+  xdg.configFile."autostart/podman-desktop.desktop" = {
+    source = "${pkgs.podman-desktop}/share/applications/podman-desktop.desktop";
+  };
+  xdg.configFile."autostart/spotify.desktop" = {
+    source = "${pkgs.spotify}/share/applications/spotify.desktop";
   };
 
   # Home Manager can also manage your environment variables through

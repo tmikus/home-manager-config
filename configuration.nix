@@ -1,13 +1,14 @@
-{ config
-, pkgs
-, ... }:
+{
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   nixpkgs.config = {
     # Allow unfree packages
     allowUnfree = true;
   };
-
 
   imports = [
     ./alacritty
@@ -55,6 +56,7 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     bat
+    bun
     delta
     deno
     direnv
@@ -91,13 +93,14 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
   };
-  xdg.configFile."autostart/jetbrains-toolbox.desktop" = {
+
+  xdg.configFile."autostart/jetbrains-toolbox.desktop" = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     source = "${pkgs.jetbrains-toolbox}/share/applications/jetbrains-toolbox.desktop";
   };
-  xdg.configFile."autostart/podman-desktop.desktop" = {
+  xdg.configFile."autostart/podman-desktop.desktop" = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     source = "${pkgs.podman-desktop}/share/applications/podman-desktop.desktop";
   };
-  xdg.configFile."autostart/spotify.desktop" = {
+  xdg.configFile."autostart/spotify.desktop" = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     source = "${pkgs.spotify}/share/applications/spotify.desktop";
   };
 

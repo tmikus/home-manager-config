@@ -61,6 +61,7 @@
     deno
     direnv
     fzf
+    gnutar
     go
     jq
     lua-language-server

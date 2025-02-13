@@ -57,6 +57,7 @@
     # '')
     bat
     bun
+    coreutils-prefixed
     delta
     deno
     direnv

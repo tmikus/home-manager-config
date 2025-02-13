@@ -51,8 +51,7 @@
     profileExtra = ''
       # Add toolbox to PATH
       export GOPATH="${builtins.getEnv "HOME"}/go"
-      export PATH="$PATH:${builtins.getEnv "HOME"}/.toolbox/bin:${builtins.getEnv "HOME"}/.local/bin:${builtins.getEnv "HOME"}/Library/Application Support/JetBrains/Toolbox/scripts:/usr/local/bin/:$GOPATH/bin"
-      export PATH="$PATH:/Users/tmikus/Library/Android/sdk/platform-tools"
+      export PATH="$PATH:${builtins.getEnv "HOME"}/.toolbox/bin:${builtins.getEnv "HOME"}/.local/bin:${builtins.getEnv "HOME"}/.jetbrains:/usr/local/bin/:$GOPATH/bin:/Users/tmikus/Library/Android/sdk/platform-tools"
 
       # Set PATH, MANPATH, etc., for Homebrew.
       [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -62,19 +61,21 @@
         bb = "brazil-build $@";
         bbb = "brazil-recursive-cmd --allPackages brazil-build $@";
         bws = "brazil workspace $@";
+        bws_reset = "brazil-recursive-cmd --allPackages (git checkout mainline && git reset --hard origin/mainline)";
         cat = "bat";
         reset_nvim = "rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.config/nvim ~/.cache/nvim";
-        update_db = "sudo /usr/libexec/locate.updatedb";
-        update_home_manager = "nix-channel --update home-manager && home-manager switch";
+        update_home_manager = "nix-channel --update && home-manager switch";
       }
       (
         if pkgs.stdenv.hostPlatform.isDarwin then
           {
-            morning = "ssh-add -D && mwinit -f && ssh-add --apple-use-keychain ~/.ssh/id_ecdsa";
+            morning = "ssh-add -D && mwinit && ssh-add --apple-use-keychain ~/.ssh/id_ecdsa";
+            update_db = "sudo /usr/libexec/locate.updatedb";
           }
         else
           {
             morning = "mwinit -o";
+            update_db = "sudo updatedb";
           }
       )
     ];

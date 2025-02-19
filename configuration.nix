@@ -57,6 +57,7 @@
     # '')
     bat
     bun
+    ccache
     coreutils-prefixed
     delta
     deno

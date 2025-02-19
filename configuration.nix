@@ -65,6 +65,8 @@
     gnutar
     go
     jq
+    k9s
+    kubectl
     lua-language-server
     mise
     nil

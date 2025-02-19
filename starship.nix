@@ -51,7 +51,7 @@
       # Shows kubernetes context and namespace
       kubernetes = {
         format = "via [󱃾 $context\($namespace\)](bold purple) ";
-        disabled = false;
+        disabled = true;
       };
     };
   };

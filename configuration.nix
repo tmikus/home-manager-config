@@ -76,7 +76,7 @@
     ripgrep
     rustup
     starship
-    thefuck
+    # thefuck
     tree-sitter
     unzip
     xclip

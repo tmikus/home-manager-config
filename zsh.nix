@@ -22,7 +22,7 @@
       then
         RED='\033[0;31m'
         NC='\033[0m' # No Color
-        echo "${RED}ERROR: Nix and Home Manager command not found.${NC}"
+        echo "''${RED}ERROR: Nix and Home Manager command not found.''${NC}"
         echo "    Looks like the latest version of MacOS has changed the /etc/zshrc file."
         echo "    Please run the following script to restore Nix and Home Manager."
         echo ""
@@ -98,7 +98,7 @@
         "history"
         "node"
         "rust"
-        "thefuck"
+        # "thefuck"
       ];
       theme = "robbyrussell";
     };

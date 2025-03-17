@@ -17,6 +17,19 @@
       }
     ];
     initExtraFirst = ''
+      # If nix-daemon command does not exist, then prompt the user to run the ./restore-nix.sh script
+      if ! command -v nix-daemon &> /dev/null
+      then
+        RED='\033[0;31m'
+        NC='\033[0m' # No Color
+        echo "${RED}ERROR: Nix and Home Manager command not found.${NC}"
+        echo "    Looks like the latest version of MacOS has changed the /etc/zshrc file."
+        echo "    Please run the following script to restore Nix and Home Manager."
+        echo ""
+        echo "    sudo ~/.config/home-manager/restore-nix.sh"
+        echo ""
+      fi
+
       autoload -Uz compinit
       compinit
     '';

@@ -1,9 +1,18 @@
 { pkgs, ... }:
+let
+  # This is only to fix a problem with `catppuccin` being broken on the unstable channel.
+  nixpkgs = import (pkgs.fetchFromGitHub {
+    owner = "NixOS";
+    repo = "nixpkgs";
+    rev = "24.11"; # or use a specific commit hash
+    sha256 = "CqCX4JG7UiHvkrBTpYC3wcEurvbtTADLbo3Ns2CEoL8=";
+  }) { inherit pkgs; };
+in 
 {
   programs.tmux = {
     enable = true;
     historyLimit = 100000;
-    plugins = with pkgs; [
+    plugins = with nixpkgs; [
       tmuxPlugins.better-mouse-mode
       {
         plugin = tmuxPlugins.catppuccin;
@@ -36,9 +45,9 @@
     extraConfig = ''
       # The section below is greatly influenced by https://hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/
       # remap prefix from 'C-b' to 'C-a'
-      unbind C-b
-      set-option -g prefix C-a
-      bind-key C-a send-prefix
+      # unbind C-b
+      # set-option -g prefix C-a
+      # bind-key C-a send-prefix
 
       # split panes using | and -
       bind | split-window -h

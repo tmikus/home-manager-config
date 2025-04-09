@@ -1,21 +1,35 @@
 { pkgs, ... }:
 let
-  # This is only to fix a problem with `catppuccin` being broken on the unstable channel.
-  nixpkgs = import (pkgs.fetchFromGitHub {
-    owner = "NixOS";
-    repo = "nixpkgs";
-    rev = "24.11"; # or use a specific commit hash
-    sha256 = "CqCX4JG7UiHvkrBTpYC3wcEurvbtTADLbo3Ns2CEoL8=";
-  }) { inherit pkgs; };
-in 
+  inherit (pkgs) lib;
+  inherit (pkgs.tmuxPlugins) mkTmuxPlugin;
+in
 {
   programs.tmux = {
     enable = true;
     historyLimit = 100000;
-    plugins = with nixpkgs; [
+    plugins = with pkgs; [
       tmuxPlugins.better-mouse-mode
       {
-        plugin = tmuxPlugins.catppuccin;
+        plugin = mkTmuxPlugin rec {
+          pluginName = "catppuccin";
+          version = "2.1.3";
+          src = fetchFromGitHub {
+            owner = "catppuccin";
+            repo = "tmux";
+            rev = "v${version}";
+            hash = "sha256-EHinWa6Zbpumu+ciwcMo6JIIvYFfWWEKH1lwfyZUNTo=";
+          };
+          postInstall = ''
+            sed -i -e 's|''${PLUGIN_DIR}/catppuccin-selected-theme.tmuxtheme|''${TMUX_TMPDIR}/catppuccin-selected-theme.tmuxtheme|g' $target/catppuccin.tmux
+          '';
+          meta = with lib; {
+            homepage = "https://github.com/catppuccin/tmux";
+            description = "Soothing pastel theme for Tmux!";
+            license = licenses.mit;
+            platforms = platforms.unix;
+            maintainers = with maintainers; [ jnsgruk ];
+          };
+        };
         extraConfig = ''
           set -g @catppuccin_flavour 'mocha'
           set -g @catppuccin_window_tabs_enabled on

@@ -76,9 +76,9 @@
     ripgrep
     rustup
     starship
-    # thefuck
     tree-sitter
     unzip
+    xan
     xclip
     wget
     zig

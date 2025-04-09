@@ -6,13 +6,21 @@
     syntaxHighlighting.enable = true;
     plugins = [
       {
-        # will source zsh-autosuggestions.plugin.zsh
+        name = "zsh-autocomplete";
+        src = pkgs.fetchFromGitHub {
+          owner = "marlonrichert";
+          repo = "zsh-autocomplete";
+          rev = "25.03.19";
+          sha256 = "eb5a5WMQi8arZRZDt4aX1IV+ik6Iee3OxNMCiMnjIx4=";
+        };
+      }
+      {
         name = "zsh-autosuggestions";
         src = pkgs.fetchFromGitHub {
           owner = "zsh-users";
           repo = "zsh-autosuggestions";
-          rev = "v0.7.0";
-          sha256 = "1g3pij5qn2j7v7jjac2a63lxd97mcsgw6xq6k5p7835q9fjiid98";
+          rev = "v0.7.1";
+          sha256 = "vpTyYq9ZgfgdDsWzjxVAE7FZH4MALMNZIFyEOBLm5Qo=";
         };
       }
     ];
@@ -98,7 +106,6 @@
         "history"
         "node"
         "rust"
-        # "thefuck"
       ];
       theme = "robbyrussell";
     };

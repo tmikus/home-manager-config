@@ -24,46 +24,48 @@
         };
       }
     ];
-    initExtraFirst = ''
-      # If nix-daemon command does not exist, then prompt the user to run the ./restore-nix.sh script
-      if ! command -v nix-daemon &> /dev/null
-      then
-        RED='\033[0;31m'
-        NC='\033[0m' # No Color
-        echo "''${RED}ERROR: Nix and Home Manager command not found.''${NC}"
-        echo "    Looks like the latest version of MacOS has changed the /etc/zshrc file."
-        echo "    Please run the following script to restore Nix and Home Manager."
-        echo ""
-        echo "    sudo ~/.config/home-manager/restore-nix.sh"
-        echo ""
-      fi
+    initContent = lib.mkMerge [
+      (lib.mkBefore ''
+        # If nix-daemon command does not exist, then prompt the user to run the ./restore-nix.sh script
+        if ! command -v nix-daemon &> /dev/null
+        then
+            RED='\033[0;31m'
+            NC='\033[0m' # No Color
+            echo "''${RED}ERROR: Nix and Home Manager command not found.''${NC}"
+            echo "    Looks like the latest version of MacOS has changed the /etc/zshrc file."
+            echo "    Please run the following script to restore Nix and Home Manager."
+            echo ""
+            echo "    sudo ~/.config/home-manager/restore-nix.sh"
+            echo ""
+        fi
 
-      autoload -Uz compinit
-      compinit
-    '';
-    initExtra = ''
-      # Add mechanic to the environment
-      [ -f "$HOME/.local/share/mechanic/complete.zsh" ] && source "$HOME/.local/share/mechanic/complete.zsh"
+        autoload -Uz compinit
+        compinit
+      '')
+      (lib.mkAfter ''
+        # Add mechanic to the environment
+        [ -f "$HOME/.local/share/mechanic/complete.zsh" ] && source "$HOME/.local/share/mechanic/complete.zsh"
 
-      if command -v mise &> /dev/null
-      then
-        eval "$(mise activate zsh)"
-      fi
-      [ -f "$HOME/.local/share/mise/completions.zsh" ] && source "$HOME/.local/share/mise/completions.zsh"
+        if command -v mise &> /dev/null
+        then
+            eval "$(mise activate zsh)"
+        fi
+        [ -f "$HOME/.local/share/mise/completions.zsh" ] && source "$HOME/.local/share/mise/completions.zsh"
 
-      # Remove OhMyZsh alias that is used by Git Kraken
-      unalias gk
+        # Remove OhMyZsh alias that is used by Git Kraken
+        unalias gk
 
-      # Add Ghostty integration
-      if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
-        source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
-      fi
+        # Add Ghostty integration
+        if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+            source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
+        fi
 
-      # Import optional config
-      if [[ -f "$HOME/.local-zshrc" ]]; then
-        source "$HOME/.local-zshrc"
-      fi
-    '';
+        # Import optional config
+        if [[ -f "$HOME/.local-zshrc" ]]; then
+            source "$HOME/.local-zshrc"
+        fi
+      '')
+    ];
     profileExtra = ''
       # Add toolbox to PATH
       export GOPATH="${builtins.getEnv "HOME"}/go"

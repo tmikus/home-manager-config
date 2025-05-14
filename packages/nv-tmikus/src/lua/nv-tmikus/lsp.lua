@@ -168,30 +168,16 @@ local all_servers = {
     ts_ls = {},
 }
 
-mason_lspconfig.setup {
-    ensure_installed = vim.tbl_keys(all_servers),
-}
+-- Setup the LSP config for each server
+for server_name, server_config in pairs(all_servers) do
+    vim.lsp.config(server_name, server_config)
+end
 
-local use_experimental_tsserver = false
-mason_lspconfig.setup_handlers {
-    function(server_name)
-        local server_config = all_servers[server_name] or {}
-        if use_experimental_tsserver and server_name == "tsserver" then
-            return
-        end
-        lspconfig[server_name].setup {
-            capabilities = capabilities,
-            on_attach = function(client, bufnr)
-                on_attach(client, bufnr)
-                local custom_on_attach = server_config.on_attach
-                if type(custom_on_attach) == "function" then
-                    custom_on_attach(client, bufnr)
-                end
-            end,
-            settings = server_config.settings or {},
-        }
-    end,
-}
+-- Tell the Mason LSP to install the servers above
+mason_lspconfig.setup({
+    automatic_enable = true,
+    ensure_installed = vim.tbl_keys(all_servers),
+})
 
 lspconfig.emmet_ls.setup({
     capabilities = capabilities,

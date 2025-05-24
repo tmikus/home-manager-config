@@ -14,12 +14,14 @@
     ./alacritty
     ./ghostty
     ./git.nix
+    ./gitui.nix
     ./intellij
     ./java.nix
     ./neovim.nix
     ./overlays.nix
     ./starship.nix
     ./tmux.nix
+    ./yazi.nix
     ./wezterm
     ./zed
     ./zellij
@@ -67,7 +69,6 @@
     eza
     fd
     fzf
-    gitui
     gnutar
     go
     jq
@@ -87,7 +88,6 @@
     xan
     xclip
     xh
-    yazi
     wget
     zellij
     zig

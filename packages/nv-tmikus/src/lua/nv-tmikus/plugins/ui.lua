@@ -134,4 +134,14 @@ return {
     "tris203/precognition.nvim",
     config = true,
   },
+  -- Session manager
+  {
+    "rmagatti/auto-session",
+    lazy = false,
+    opts = {
+      auto_restore_last_session = true,
+      suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
+    },
+    config = true,
+  },
 }

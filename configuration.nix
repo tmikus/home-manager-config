@@ -22,6 +22,7 @@
     ./tmux.nix
     ./wezterm
     ./zed
+    ./zellij
     ./zoxide.nix
     ./zsh.nix
   ];
@@ -55,14 +56,18 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    bacon
     bat
     bun
     ccache
-    coreutils-prefixed
     delta
     deno
     direnv
+    dua
+    eza
+    fd
     fzf
+    gitui
     gnutar
     go
     jq
@@ -78,9 +83,13 @@
     starship
     tree-sitter
     unzip
+    uutils-coreutils-noprefix
     xan
     xclip
+    xh
+    yazi
     wget
+    zellij
     zig
   ];
 

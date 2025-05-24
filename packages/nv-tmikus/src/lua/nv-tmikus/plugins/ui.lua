@@ -129,4 +129,9 @@ return {
     },
     config = true,
   },
+  -- Precognition - show the type of movement you are allowed to make
+  {
+    "tris203/precognition.nvim",
+    config = true,
+  },
 }

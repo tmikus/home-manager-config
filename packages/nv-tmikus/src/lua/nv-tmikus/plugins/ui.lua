@@ -84,7 +84,7 @@ return {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
     },
-  }, 
+  },
   -- Fancy in-terminal scrollbar
   {
     "petertriho/nvim-scrollbar",

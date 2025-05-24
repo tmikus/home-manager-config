@@ -19,3 +19,4 @@ if ! [ -x "$(command -v nix)" ]; then
 else
     echo "Error: Nix is already installed."
 fi
+

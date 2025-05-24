@@ -9,13 +9,13 @@ wk.add({
     {
         mode = "n",
         -- General
-        { "<c-s>", "<cmd>w<cr>", desc = "Save changes", nowait = true, silent = true },
-        { "<leader>cl", "<cmd>nohl<cr>", desc = " Clear search highlights" },
+        { "<c-s>", "<cmd>w<cr>", desc = "Save changes", icon = "󰆓", nowait = true, silent = true },
+        { "<leader>cl", "<cmd>nohl<cr>", desc = "Clear search highlights", icon = "󰃢" },
         -- Telescope shortcuts
-        { "<leader>fw", telescope.live_grep, desc = "Find word" },
-        { "<leader>ff", telescope.find_files, desc = "Find file" },
+        { "<leader>fw", telescope.live_grep, desc = "Find word", icon = "",  },
+        { "<leader>ff", telescope.find_files, desc = "Find file", icon = "󰈞" },
         { "<leader>e", telescope.buffers, desc = "Show buffers" },
-        { "<leader>q", "<cmd>:Bdelete<cr>", desc = " Close buffer, not window", noremap = true },
+        { "<leader>q", "<cmd>:Bdelete<cr>", desc = "Close buffer, not window", icon = " ", noremap = true },
         {
             "<leader>/",
             function()
@@ -24,21 +24,22 @@ wk.add({
                 })
             end,
             desc = "Find word in current buffer",
+            icon = "󱎸",
         },
-        { "<leader>1", "<cmd>NvimTreeToggle<cr>", desc = "Open file explorer", noremap = true },
-        { "<leader>sh", "<cmd>split<cr>", desc = "Split the window horizontally" },
-        { "<leader>sv", "<cmd>vsplit<cr>", desc = "Split the window vertically" },
-        { "<leader>h", "<c-w>h", desc = "Navigate to the buffer (left)" },
-        { "<leader>l", "<c-w>l", desc = "Navigate to the buffer (right)" },
-        { "<leader>j", "<c-w>j", desc = "Navigate to the buffer (down)" },
-        { "<leader>k", "<c-w>k", desc = "Navigate to the buffer (top)" },
+        { "<leader>1", "<cmd>NvimTreeToggle<cr>", desc = "Open file explorer", icon = "󰪶", noremap = true },
+        { "<leader>sh", "<cmd>split<cr>", desc = "Split the window horizontally", icon = "" },
+        { "<leader>sv", "<cmd>vsplit<cr>", desc = "Split the window vertically", icon = "" },
+        { "<leader>h", "<c-w>h", desc = "Navigate to the buffer (left)", icon = "" },
+        { "<leader>l", "<c-w>l", desc = "Navigate to the buffer (right)", icon = "" },
+        { "<leader>j", "<c-w>j", desc = "Navigate to the buffer (down)", icon = "" },
+        { "<leader>k", "<c-w>k", desc = "Navigate to the buffer (top)", icon = "" },
         -- ["<c-h>"] = { "<c-w>h", "Navigate to the buffer (left)" },
         -- ["<c-l>"] = { "<c-w>l", "Navigate to the buffer (right)" },
         -- ["<c-j>"] = { "<c-w>j", "Navigate to the buffer (down)" },
         -- ["<c-k>"] = { "<c-w>k", "Navigate to the buffer (top)" },
         -- Jumping
-        { "<leader>o", "<c-o>", desc = "Jump: Go to older cursor position", noremap = true },
-        { "<leader>i", "<c-i>", desc = "Jump: Go to newer cursor position", noremap = true },
+        { "<leader>o", "<c-o>", desc = "Jump: Go to older cursor position", icon = "", noremap = true },
+        { "<leader>i", "<c-i>", desc = "Jump: Go to newer cursor position", icon = "", noremap = true },
         -- LSP Diagnostics
         { "<leader>dp", vim.diagnostic.goto_prev, desc = "Go to previous diagnostic message" },
         { "<leader>dn", vim.diagnostic.goto_next, desc = "Go to next diagnostic message" },
@@ -58,7 +59,7 @@ wk.add({
             desc = "Toggle the Neogit popup",
         },
         -- Neoclip
-        { "<leader>p", ":Telescope neoclip<cr>", desc = "Show clipboard history", icon = ""  },
+        { "<leader>p", ":Telescope neoclip<cr>", desc = "Show clipboard history", icon = "󱛢"  },
         -- Refactoring
         { "<leader>ri", ":Refactor inline_var<cr>", desc = "Inline variable" },
         { "<leader>rI", ":Refactor inline_func<cr>", desc = "Inline function" },
@@ -67,16 +68,17 @@ wk.add({
     },
     {
         mode = "i",
-        { "<c-s>", "<cmd>w<cr>", desc = "Save changes", nowait = true, silent = true },
+        { "<c-s>", "<cmd>w<cr>", desc = "Save changes", icon = "", nowait = true, silent = true },
     },
     {
         mode = "v",
-        { "<s-j>", ":m '>+1<CR>gv=gv", desc = " Move one line down" },
-        { "<s-k>", ":m '<-2<CR>gv=gv", desc = " Move one line up" },
+        { "<s-j>", ":m '>+1<CR>gv=gv", desc = "Move one line down", icon = "" },
+        { "<s-k>", ":m '<-2<CR>gv=gv", desc = "Move one line up", icon = "", },
+
     },
     {
         mode = { "x" },
-        { "<leader>p", '"_dP', desc = " Paste without losing the last copied text" },
+        { "<leader>p", '"_dP', desc = "Paste without losing the last copied text", icon = " " },
         { "<leader>re", ":Refactor extract<cr>", desc = "Extract"},
         { "<leader>rf", ":Refactor extract_to_file<cr>", desc = "Extract to file" },
         { "<leader>rv", ":Refactor extract_var<cr>", desc = "Extract variable" },

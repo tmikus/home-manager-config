@@ -12,8 +12,8 @@ wk.add({
         { "<c-s>", "<cmd>w<cr>", desc = "Save changes", nowait = true, silent = true },
         { "<leader>cl", "<cmd>nohl<cr>", desc = " Clear search highlights" },
         -- Telescope shortcuts
-        { "<leader>ff", telescope.find_files, desc = "Find file" },
         { "<leader>fw", telescope.live_grep, desc = "Find word" },
+        { "<leader>ff", telescope.find_files, desc = "Find file" },
         { "<leader>e", telescope.buffers, desc = "Show buffers" },
         { "<leader>q", "<cmd>:Bdelete<cr>", desc = " Close buffer, not window", noremap = true },
         {
@@ -59,6 +59,11 @@ wk.add({
         },
         -- Neoclip
         { "<leader>p", ":Telescope neoclip<cr>", desc = "Show clipboard history", icon = ""  },
+        -- Refactoring
+        { "<leader>ri", ":Refactor inline_var<cr>", desc = "Inline variable" },
+        { "<leader>rI", ":Refactor inline_func<cr>", desc = "Inline function" },
+        { "<leader>rb", ":Refactor extract_block<cr>", desc = "Extract block" },
+        { "<leader>rbf", ":Refactor extract_block_to_file<cr>", desc = "Extract block to file" },
     },
     {
         mode = "i",
@@ -72,6 +77,10 @@ wk.add({
     {
         mode = { "x" },
         { "<leader>p", '"_dP', desc = " Paste without losing the last copied text" },
+        { "<leader>re", ":Refactor extract<cr>", desc = "Extract"},
+        { "<leader>rf", ":Refactor extract_to_file<cr>", desc = "Extract to file" },
+        { "<leader>rv", ":Refactor extract_var<cr>", desc = "Extract variable" },
+        { "<leader>ri", ":Refactor inline_var<cr>", desc = "Inline variable" },
     },
 })
 

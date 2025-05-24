@@ -53,4 +53,13 @@ return {
   },
   -- Go Language Support
   "ray-x/go.nvim",
+  -- Refactoring
+  {
+    "ThePrimeagen/refactoring.nvim",
+    config = true,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+  },
 }

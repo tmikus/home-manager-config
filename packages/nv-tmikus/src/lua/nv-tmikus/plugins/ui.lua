@@ -116,4 +116,17 @@ return {
       require("rainbow-delimiters.setup").setup(require "nv-tmikus.configs.delimiters")
     end
   },
+  -- Clipboard manager
+  {
+    "AckslD/nvim-neoclip.lua",
+    dependencies = {
+      {"nvim-telescope/telescope.nvim"},
+      {"kkharji/sqlite.lua"},
+    },
+    opts = {
+      enable_persistent_history = true,
+      initial_mode = "normal",
+    },
+    config = true,
+  },
 }

@@ -57,8 +57,8 @@ wk.add({
             end,
             desc = "Toggle the Neogit popup",
         },
-        -- ["<C-k>"] = { "<cmd>DiffviewOpen<cr>", "Open the git diff", noremap = true },
-        -- ["<C-S-k>"] = { "<cmd>DiffviewClose<cr>", "Close the git diff", noremap = true },
+        -- Neoclip
+        { "<leader>p", ":Telescope neoclip<cr>", desc = "Show clipboard history", icon = ""  },
     },
     {
         mode = "i",

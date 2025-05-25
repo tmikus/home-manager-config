@@ -28,6 +28,11 @@ end
 if os.getenv("DISABLE_SUPERMAVEN") ~= "1" then
   table.insert(plugins, {
     "supermaven-inc/supermaven-nvim",
+    opts = {
+      keymaps = {
+        accept_suggestion = "<C-CR>",
+      },
+    },
     config = true,
   })
 end

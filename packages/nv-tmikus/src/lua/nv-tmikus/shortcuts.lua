@@ -14,8 +14,22 @@ wk.add({
         -- Telescope shortcuts
         { "<leader>fw", telescope.live_grep, desc = "Find word", icon = "",  },
         { "<leader>ff", telescope.find_files, desc = "Find file", icon = "󰈞" },
-        { "<leader>ee", telescope.buffers, desc = "Show open buffers", icon = "" },
-        { "<leader>ef", telescope.oldfiles, desc = "Show recently opened files", icon = "󱋡" },
+        {
+            "<leader>ee",
+            function()
+                telescope.buffers({ initial_mode = "normal" })
+            end,
+            desc = "Show open buffers",
+            icon = "",
+        },
+        {
+            "<leader>ef",
+            function()
+                telescope.oldfiles({ initial_mode = "normal" })
+            end,
+            desc = "Show recently opened files",
+            icon = "󱋡",
+        },
         { "<leader>q", "<cmd>:Bdelete<cr>", desc = "Close buffer, not window", icon = " ", noremap = true },
         {
             "<leader>/",

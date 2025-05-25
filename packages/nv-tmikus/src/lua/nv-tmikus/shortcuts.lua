@@ -14,7 +14,8 @@ wk.add({
         -- Telescope shortcuts
         { "<leader>fw", telescope.live_grep, desc = "Find word", icon = "",  },
         { "<leader>ff", telescope.find_files, desc = "Find file", icon = "󰈞" },
-        { "<leader>e", telescope.buffers, desc = "Show buffers" },
+        { "<leader>ee", telescope.buffers, desc = "Show open buffers", icon = "" },
+        { "<leader>ef", telescope.oldfiles, desc = "Show recently opened files", icon = "󱋡" },
         { "<leader>q", "<cmd>:Bdelete<cr>", desc = "Close buffer, not window", icon = " ", noremap = true },
         {
             "<leader>/",
@@ -33,10 +34,6 @@ wk.add({
         { "<leader>l", "<c-w>l", desc = "Navigate to the buffer (right)", icon = "" },
         { "<leader>j", "<c-w>j", desc = "Navigate to the buffer (down)", icon = "" },
         { "<leader>k", "<c-w>k", desc = "Navigate to the buffer (top)", icon = "" },
-        -- ["<c-h>"] = { "<c-w>h", "Navigate to the buffer (left)" },
-        -- ["<c-l>"] = { "<c-w>l", "Navigate to the buffer (right)" },
-        -- ["<c-j>"] = { "<c-w>j", "Navigate to the buffer (down)" },
-        -- ["<c-k>"] = { "<c-w>k", "Navigate to the buffer (top)" },
         -- Jumping
         { "<leader>o", "<c-o>", desc = "Jump: Go to older cursor position", icon = "", noremap = true },
         { "<leader>i", "<c-i>", desc = "Jump: Go to newer cursor position", icon = "", noremap = true },

@@ -7,8 +7,8 @@
       pkgs.fetchFromGitHub {
         owner = "gitui-org";
         repo = "gitui";
-        rev = "master"; # main branch on 2025-05-24
-        sha256 = "sha256-ZF3q3QNtYiUM6KXgJboYNs14//BYgtAShzzUlql6V7M=";
+        rev = "69fd7e664c15297253a51f9bf4375f31fba37c0c"; # main branch on 2025-05-27
+        sha256 = "sha256-A1FD4zeGyTq+2Q1q0uCBBgLqYhV4BwUsYSJWGhrqe8c=";
       } + "/vim_style_key_config.ron"
     );
     theme = builtins.readFile (

@@ -52,6 +52,11 @@
         fi
         [ -f "$HOME/.local/share/mise/completions.zsh" ] && source "$HOME/.local/share/mise/completions.zsh"
 
+        if command -v direnv &> /dev/null
+        then
+            eval "$(direnv hook zsh)"
+        fi
+
         # Remove OhMyZsh alias that is used by Git Kraken
         unalias gk
 

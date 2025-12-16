@@ -2,7 +2,7 @@
 
 {
   programs.gitui = {
-    enable = false;
+    enable = true;
     keyConfig = builtins.readFile (
       pkgs.fetchFromGitHub {
         owner = "gitui-org";

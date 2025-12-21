@@ -17,6 +17,7 @@
     ./gitui.nix
     ./intellij
     ./java.nix
+    ./jujutsu.nix
     ./neovim.nix
     ./overlays.nix
     ./starship.nix

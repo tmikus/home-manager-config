@@ -1,14 +1,17 @@
 {
   programs.git = {
     enable = true;
-    userName = "Tomasz Mikus";
-    userEmail = "mikus.tomasz@gmail.com";
-    aliases = {
-      ci = "commit";
-      co = "checkout";
-      s = "status";
-    };
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Tomasz Mikus";
+        email = "tomasz@mikus.uk";
+      };
+      alias = {
+        ci = "commit";
+        co = "checkout";
+        s = "status";
+      };
+      # extraConfig = {
       # Delta config
       core = {
         pager = "delta";

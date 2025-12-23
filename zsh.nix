@@ -115,6 +115,7 @@
         "git"
         "npm"
         "history"
+        "jj"
         "node"
         "rust"
       ];

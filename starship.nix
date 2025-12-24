@@ -4,6 +4,23 @@
 
     settings = {
       add_newline = false;
+      format = builtins.concatStringsSep "" [
+        "$username"
+        "$hostname"
+        "$directory"
+        "\${custom.git_conditional}"
+        "\${custom.jj}"
+        "$line_break"
+        "$jobs"
+        "$battery"
+        "$time"
+        "$status"
+        "$os"
+        "$container"
+        "$netns"
+        "$shell"
+        "$character"
+      ];
 
       # Shows the username
       username = {
@@ -53,7 +70,22 @@
         format = "via [󱃾 $context\($namespace\)](bold purple) ";
         disabled = true;
       };
+
+      custom = {
+        git_conditional = {
+          command = "starship module git_branch; starship module git_status";
+          when = "test ! -d .jj"; # Only show if .jj folder doesn't exist
+          format = "$output";
+        };
+        jj = {
+          command = "prompt";
+          format = "$output";
+          ignore_timeout = true;
+          shell = ["starship-jj" "--ignore-working-copy" "starship"];
+          use_stdin = false;
+          when = true;
+        };
+      };
     };
   };
-
 }

@@ -74,7 +74,7 @@
     profileExtra = ''
       # Add toolbox to PATH
       export GOPATH="${builtins.getEnv "HOME"}/go"
-      export PATH="$PATH:${builtins.getEnv "HOME"}/.toolbox/bin:${builtins.getEnv "HOME"}/.local/bin:${builtins.getEnv "HOME"}/.jetbrains:/usr/local/bin/:$GOPATH/bin:/Users/tmikus/Library/Android/sdk/platform-tools"
+      export PATH="$PATH:${builtins.getEnv "HOME"}/.toolbox/bin:${builtins.getEnv "HOME"}/.cargo/bin:${builtins.getEnv "HOME"}/.local/bin:${builtins.getEnv "HOME"}/.jetbrains:/usr/local/bin/:$GOPATH/bin:/Users/tmikus/Library/Android/sdk/platform-tools"
 
       # Add the Chromium build tools
       export PATH="$PATH:/Users/tmikus/projects/depot_tools"

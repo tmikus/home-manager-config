@@ -11,8 +11,6 @@
         co = "checkout";
         s = "status";
       };
-      # extraConfig = {
-      # Delta config
       core = {
         pager = "delta";
       };

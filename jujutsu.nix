@@ -2,15 +2,12 @@
   programs.jujutsu = {
     enable = true;
     settings = {
-      aliases = {
-        spr = ["util" "exec" "--" "jj-spr"];
-      };
       user = {
         name = "Tomasz Mikus";
         email = "tomasz@mikus.uk";
       };
-      spr = {
-        branchPrefix = "tmikus-";
+      aliases = {
+        spr = ["util" "exec" "--" "jj-spr"];
       };
       ui = {
         default-command = "log";

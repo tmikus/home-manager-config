@@ -1,6 +1,7 @@
 {
   nixpkgs.overlays = [
     (final: prev: {
+      jj-spr = prev.callPackage ./packages/jj-spr { };
       nv-tmikus = prev.callPackage ./packages/nv-tmikus { };
 
       # Fix for the tmux not opening ZSH: https://github.com/nix-community/home-manager/issues/5952

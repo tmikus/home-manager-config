@@ -6,6 +6,9 @@
         name = "Tomasz Mikus";
         email = "tomasz@mikus.uk";
       };
+      aliases = {
+        spr = ["util" "exec" "--" "jj-spr"];
+      };
       ui = {
         default-command = "log";
         editor = "nvim";

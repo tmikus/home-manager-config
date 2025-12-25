@@ -72,6 +72,7 @@
     fzf
     gnutar
     go
+    jj-spr
     jq
     k9s
     kubectl

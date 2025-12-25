@@ -8,21 +8,17 @@ The configuration is made portable with the use of the [Nix Home Manager](https:
 
 Some of the tools installed by this configuration include:
 
-
 ### [NeoVim](https://neovim.io/)
 
 ![Neovim](docs/nvim.png)
-
 
 ### [Bat](https://github.com/sharkdp/bat)
 
 A `cat` clone with a fancy style (and wings)
 
-
 ### [tmux](https://github.com/tmux/tmux/wiki)
 
 ![Tmux](docs/tmux.png)
-
 
 ### [zoxide](https://github.com/ajeetdsouza/zoxide)
 
@@ -31,28 +27,26 @@ zoxide is a smarter cd command, inspired by z and autojump.
 It remembers which directories you use most frequently, so you can "jump" to them in just a few keystrokes.
 zoxide works on all major shells.
 
-
 ### zsh terminal + Oh My ZSH + starship
 
 ![ZSH](docs/zsh.png)
 
-
 ### Programming languages
 
-* Go
-* NodeJS 20
-* Python 3.11 with `pip`, `setuptools` and `wheel`
-* Rust (rustc + rustfmt + cargo)
-* zig
+- Go
+- NodeJS 20
+- Python 3.11 with `pip`, `setuptools` and `wheel`
+- Rust (rustc + rustfmt + cargo)
+- zig
 
 ### Others
 
-* clang (not on MacOS)
-* gnumake (not on MacOS)
-* delta (used for a fancy git diff)
-* thefuck
-* unzip
-* wget
+- clang (not on MacOS)
+- gnumake (not on MacOS)
+- delta (used for a fancy git diff)
+- thefuck
+- unzip
+- wget
 
 ## Pre-requisites
 
@@ -64,10 +58,10 @@ Before you're able to install the Nix Home Manager you need to install the Nix P
 
 The instructions depend on the OS you're on. For NixOS you don't need to do anything as it comes with the package manager, but on other OS here are the instructions:
 
-* [Linux](https://nixos.org/download/#nix-install-linux)
-* [MacOS](https://nixos.org/download/#nix-install-macos)
-* [Windows - WSL2](https://nixos.org/download/#nix-install-windows)
-* [More](https://nixos.org/download/#nix-more)
+- [Linux](https://nixos.org/download/#nix-install-linux)
+- [MacOS](https://nixos.org/download/#nix-install-macos)
+- [Windows - WSL2](https://nixos.org/download/#nix-install-windows)
+- [More](https://nixos.org/download/#nix-more)
 
 **Additional step on AL2**
 
@@ -84,7 +78,6 @@ for n in $(seq 1 10); do sudo useradd -c "Nix build user $n" \
     -d /var/empty -g nixbld -G nixbld -M -N -r -s "$(which nologin)" \
     nixbld$n; done
 ```
-
 
 **Nix Home Manager**
 
@@ -132,6 +125,7 @@ To fix this please make a backup of these files by renaming them to something li
 ### Nix not found after MacOS update
 
 Sometimes upating MacOS can result in Nix being removed from the `/etc/zshrc` file. To recover it simply run the `./restore-nix.sh` or add the following at the back of the `/etc/zshrc` file:
+
 ```
 # Nix
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
@@ -139,3 +133,7 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
 fi
 # End Nixs
 ```
+
+## Test change
+
+This is a test change to see how JJ SPR works

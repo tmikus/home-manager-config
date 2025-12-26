@@ -62,7 +62,7 @@ rustPlatform.buildRustPackage rec {
   meta = with lib; {
     description = "Jujutsu change-based workflow integration with GitHub pull requests";
     homepage = "https://github.com/LucioFranco/jj-spr";
-    license = licenses.asl20;
+    license = licenses.mit;
     maintainers = [ ];
     mainProgram = "spr";
   };

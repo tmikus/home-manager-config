@@ -15,7 +15,7 @@
         branchPrefix = "tmikus-";
       };
       ui = {
-        default-command = "log";
+        default-command = "l";
         editor = "nvim";
         # Enable pagination for commands that support it (default)
         paginate = "auto";

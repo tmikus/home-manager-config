@@ -11,26 +11,28 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "jj-spr";
-  version = "unstable-2025-11-28";
+  version = "unstable-2025-12-26";
 
   src = fetchFromGitHub {
     owner = "LucioFranco";
     repo = "jj-spr";
-    rev = "9c49a865d9eb1163a7cf05224a25480935c66920";
-    hash = "sha256-jPG9EEsHEFqxm+Nb5CJ8L4VY8vHvresZkv91chFKC5c=";
+    rev = "8219375ae79f989c94fd09feb7c0eb1bf56e9cc0";
+    hash = "sha256-BpXHPwPKtrGrdWEJgDbMJD4n52ZHSg/wOMcDAWWSt2Y=";
   };
 
-  cargoHash = "sha256-BN6ENtWdberdoorQboOqFLU+lRxFvyx7lqKlLs/uOcg=";
+  cargoLock = {
+    lockFile = "${src}/Cargo.lock";
+  };
 
   # Fix octocrab's build script that fails in offline Nix builds
   postPatch = ''
     # Patch octocrab to remove the problematic build script and generated file include
-    if [ -d ../jj-spr-unstable-2025-11-28-vendor/octocrab-0.48.0 ]; then
+    if [ -d ../jj-spr-unstable-2025-12-26-vendor/octocrab-0.48.0 ]; then
       # Create an empty build script
-      echo 'fn main() {}' > ../jj-spr-unstable-2025-11-28-vendor/octocrab-0.48.0/build.rs
+      echo 'fn main() {}' > ../jj-spr-unstable-2025-12-26-vendor/octocrab-0.48.0/build.rs
       # Replace the include statement with an empty constant definition
       sed -i.bak 's|include!(concat!(env!("OUT_DIR"), "/headers_metadata.rs"));|const _SET_HEADERS_MAP: \[(\&str, \&str); 0\] = \[\];|' \
-        ../jj-spr-unstable-2025-11-28-vendor/octocrab-0.48.0/src/lib.rs
+        ../jj-spr-unstable-2025-12-26-vendor/octocrab-0.48.0/src/lib.rs
     fi
   '';
 

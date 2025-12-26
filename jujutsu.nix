@@ -4,7 +4,7 @@
     settings = {
       aliases = {
         l = ["log" "--no-pager" "--limit" "10"];
-        rebase_main = ["jj" "rebase" "-r" "@" "-d" "main@origin"];
+        rebase_main = ["rebase" "-r" "@" "-d" "main@origin"];
         spr = ["util" "exec" "--" "jj-spr"];
       };
       user = {

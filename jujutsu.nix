@@ -25,6 +25,14 @@
           navigate = true;
         };
       };
+      revset-aliases = {
+        # Define trunk as main@origin
+        "trunk()" = "main@origin";
+      };
+      revsets = {
+        # Show all revisions in log by default (no elided revisions)
+        log = "::";
+      };
     };
   };
 }

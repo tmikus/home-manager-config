@@ -41,16 +41,21 @@
     '';
 
     interactiveShellInit = ''
-      fish_config theme choose ayu
+      set -g fish_greeting
+
+      # Only set theme if not already set to ayu
+      if test "$__fish_theme" != "ayu"
+        fish_config theme choose ayu
+        set -U __fish_theme ayu
+      end
 
       # Add mechanic to the environment
       if test -f "$HOME/.local/share/mechanic/complete.fish"
         source "$HOME/.local/share/mechanic/complete.fish"
       end
 
-      if command -v mise > /dev/null
-        mise activate fish | source
-      end
+      # Use mise shims for faster startup
+      fish_add_path -g "$HOME/.local/share/mise/shims"
       if test -f "$HOME/.local/share/mise/completions.fish"
         source "$HOME/.local/share/mise/completions.fish"
       end

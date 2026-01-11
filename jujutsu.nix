@@ -52,7 +52,8 @@
         "stack()" = "ancestors(@, 10) & mine()";
       };
       revsets = {
-        log = "present(@) | ancestors(immutable_heads().., 2) | present(trunk())";
+        # Show all revisions in log by default (no elided revisions)
+        log = "::";
       };
     };
   };

@@ -85,8 +85,8 @@ return {
     end,
     color = function()
       local buf = vim.api.nvim_get_current_buf()
-      local ts = vim.treesitter.highlighter.active[buf]
-      return { fg = ts and not vim.tbl_isempty(ts) and colors.green or colors.red }
+      local ts = vim.treesitter.highlighter.get(buf)
+      return { fg = ts and colors.green or colors.red }
     end,
     cond = conditions.hide_in_width,
   },
@@ -100,7 +100,7 @@ return {
 
   spaces = {
     function()
-      local shiftwidth = vim.api.nvim_buf_get_option(0, "shiftwidth")
+      local shiftwidth = vim.bo.shiftwidth
       return icons.ui.Tab .. " " .. shiftwidth
     end,
     padding = 1,

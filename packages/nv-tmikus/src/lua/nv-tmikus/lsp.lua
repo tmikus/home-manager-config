@@ -10,86 +10,77 @@ local function format(bufnr)
     }
 end
 
---  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
-    local nmap = function(keys, func, desc)
-        if desc then
-            desc = "LSP: " .. desc
+-- Configure diagnostics with signs
+vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN] = "",
+            [vim.diagnostic.severity.HINT] = "",
+            [vim.diagnostic.severity.INFO] = "",
+        },
+    },
+    float = {
+        focus = false,
+        focusable = false,
+        border = "rounded",
+    }
+})
+
+--  This autocmd gets run when an LSP connects to a particular buffer.
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("TmikusLspAttach", { clear = true }),
+    callback = function(args)
+        local bufnr = args.buf
+
+        local nmap = function(keys, func, desc)
+            if desc then
+                desc = "LSP: " .. desc
+            end
+            vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
         end
 
-        vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+        nmap("<leader>rn", vim.lsp.buf.rename, " Rename symbol")
+        nmap("<leader>ca", vim.lsp.buf.code_action, " Show code actions")
+
+        nmap("<leader>gd", vim.lsp.buf.definition, " Go to definition")
+        nmap("<leader>cr", telescope.lsp_references, " Show references")
+        nmap("<leader>ci", vim.lsp.buf.implementation, " Show implementation")
+        nmap("<leader>cy", vim.lsp.buf.type_definition, " Type definition")
+        nmap("<leader>ds", telescope.lsp_document_symbols, "[D]ocument [S]ymbols")
+        nmap("<leader>ws", telescope.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+
+        nmap("<leader>cd", vim.lsp.buf.hover, " Show documentation")
+        nmap("<leader>cs", vim.lsp.buf.signature_help, "Signature Documentation")
+        nmap("<leader>ll", vim.lsp.codelens.run, "Run code lens action")
+
+        -- Lesser used LSP functionality
+        nmap("<leader>gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+        nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
+        nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
+        nmap("<leader>wl", function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end, "[W]orkspace [L]ist Folders")
+
+        -- Create a command `:Format` local to the LSP buffer
+        vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
+            format(bufnr)
+        end, { desc = "Format current buffer with LSP" })
+
+        -- Format on save
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = vim.api.nvim_create_augroup("TmikusFormatOnSave", { clear = true }),
+            buffer = bufnr,
+            callback = function()
+                local should_format_on_save = true
+                local client = vim.lsp.get_clients({ bufnr = bufnr })[1]
+                if client and should_format_on_save and client.supports_method("textDocument/formatting") then
+                    format(bufnr)
+                end
+            end,
+        })
     end
-
-    local signs = {
-        { name = "DiagnosticSignError", text = "" },
-        { name = "DiagnosticSignWarn", text = "" },
-        { name = "DiagnosticSignHint", text = "" },
-        { name = "DiagnosticSignInfo", text = "" },
-    }
-
-    for _, sign in ipairs(signs) do
-        vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-    end
-
-    -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "rounded",
-    })
-
-    local config = {
-        signs = {
-            active = signs,
-        },
-        float = {
-            focus = false,
-            focusable = false,
-            border = "rounded",
-        }
-    }
-
-    vim.diagnostic.config(config)
-
-    nmap("<leader>rn", vim.lsp.buf.rename, " Rename symbol")
-    nmap("<leader>ca", vim.lsp.buf.code_action, " Show code actions")
-
-    nmap("<leader>gd", vim.lsp.buf.definition, " Go to definition")
-    nmap("<leader>cr", telescope.lsp_references, " Show references")
-    nmap("<leader>ci", vim.lsp.buf.implementation, " Show implementation")
-    nmap("<leader>cy", vim.lsp.buf.type_definition, " Type definition")
-    nmap("<leader>ds", telescope.lsp_document_symbols, "[D]ocument [S]ymbols")
-    nmap("<leader>ws", telescope.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-
-    nmap("<leader>cd", vim.lsp.buf.hover, " Show documentation")
-    nmap("<leader>cs", vim.lsp.buf.signature_help, "Signature Documentation")
-    nmap("<leader>ll", vim.lsp.codelens.run, "Run code lens action")
-
-    -- Lesser used LSP functionality
-    nmap("<leader>gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-    nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
-    nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
-    nmap("<leader>wl", function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, "[W]orkspace [L]ist Folders")
-
-    -- Create a command `:Format` local to the LSP buffer
-    vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-        format(bufnr)
-    end, { desc = "Format current buffer with LSP" })
-
-    -- Format on save
-    vim.api.nvim_create_autocmd("BufWritePre", {
-        group = vim.api.nvim_create_augroup("TmikusFormatOnSave", { clear = true }),
-        buffer = bufnr,
-        callback = function()
-            local should_format_on_save = true
-            local client = vim.lsp.get_active_clients({ filter = { bufnr = bufnr } })[1]
-            local can_format_client = client.supports_method("textDocument/formatting")
-            if should_format_on_save and can_format_client then
-                format(bufnr)
-            end
-        end,
-    })
-end
+})
 
 -- Setup neovim lua configuration
 require("neodev").setup({
@@ -111,29 +102,8 @@ require("mason").setup({
     },
 })
 
-local function get_custom_lsp_config(tbl)
-    local custom_settings = tbl.settings
-    local custom_on_attach = type(tbl.on_attach) == "function" and tbl.on_attach or nil
-    local has_no_settings_in_table = not (type(custom_settings) == "table" or type(custom_on_attach) == "function") and
-        utils.table_length(tbl) > 0
-
-    if has_no_settings_in_table then
-        vim.notify_once(
-            "You should use `settings` to configure LSPs.",
-            vim.log.levels.WARN
-        )
-        custom_settings = tbl
-    end
-
-    return {
-        settings = custom_settings,
-        on_attach = custom_on_attach,
-    }
-end
-
 -- Ensure the servers above are installed
 local mason_lspconfig = require "mason-lspconfig"
-local lspconfig = require "lspconfig"
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --
@@ -141,11 +111,34 @@ local lspconfig = require "lspconfig"
 --  the `settings` field of the server config. You must look up that documentation yourself:
 -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 local all_servers = {
-    emmet_ls = {},
+    emmet_ls = {
+        filetypes = {
+            "css",
+            "eruby",
+            "html",
+            "javascript",
+            "javascriptreact",
+            "less",
+            "sass",
+            "scss",
+            "svelte",
+            "pug",
+            "typescriptreact",
+            "vue"
+        },
+        init_options = {
+            html = {
+                options = {
+                    ["bem.enabled"] = true,
+                },
+            },
+        },
+    },
     eslint = {},
     gopls = {},
     jsonls = {},
     lua_ls = {
+        cmd = { os.getenv("HOME") .. "/.nix-profile/bin/lua-language-server" },
         settings = {
             Lua = {
                 workspace = { checkThirdParty = false },
@@ -164,12 +157,15 @@ local all_servers = {
         },
     },
     markdown_oxide = {},
-    rust_analyzer = {},
+    rust_analyzer = {
+        cmd = { os.getenv("HOME") .. "/.nix-profile/bin/rust-analyzer" },
+    },
     ts_ls = {},
 }
 
--- Setup the LSP config for each server
+-- Setup the LSP config for each server with capabilities
 for server_name, server_config in pairs(all_servers) do
+    server_config.capabilities = capabilities
     vim.lsp.config(server_name, server_config)
 end
 
@@ -177,40 +173,6 @@ end
 mason_lspconfig.setup({
     automatic_enable = true,
     ensure_installed = vim.tbl_keys(all_servers),
-})
-
-lspconfig.emmet_ls.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    filetypes = {
-        "css",
-        "eruby",
-        "html",
-        "javascript",
-        "javascriptreact",
-        "less",
-        "sass",
-        "scss",
-        "svelte",
-        "pug",
-        "typescriptreact",
-        "vue"
-    },
-    init_options = {
-        html = {
-            options = {
-                ["bem.enabled"] = true,
-            },
-        },
-    },
-})
-
-lspconfig.lua_ls.setup({
-    cmd = { os.getenv("HOME") .. "/.nix-profile/bin/lua-language-server" }
-})
-
-lspconfig.rust_analyzer.setup({
-    cmd = { os.getenv("HOME") .. "/.nix-profile/bin/rust-analyzer" }
 })
 
 -- NoneLS config
@@ -290,8 +252,6 @@ require("mason-null-ls").setup({
 
 -- Start go lang support
 require("go").setup()
-
-require("lspconfig.ui.windows").default_options.border = "single"
 
 -- Mason NVIM Lint
 require("mason-nvim-lint").setup(require("nv-tmikus.configs.nvim-lint"))

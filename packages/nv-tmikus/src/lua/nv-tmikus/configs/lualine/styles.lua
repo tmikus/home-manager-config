@@ -148,17 +148,24 @@ function M.get_style(style)
   return vim.deepcopy(styles[style])
 end
 
-function M.update()
+function M.update(config)
   local style = M.get_style("lvim")
 
-  lvim.builtin.lualine = vim.tbl_deep_extend("keep", lvim.builtin.lualine, style)
+  -- Merge style into config
+  for key, value in pairs(style) do
+    if config[key] == nil or (type(config[key]) == "table" and next(config[key]) == nil) then
+      config[key] = value
+    elseif type(value) == "table" then
+      config[key] = vim.tbl_deep_extend("keep", config[key], value)
+    end
+  end
 
-  local color_template = vim.g.colors_name or lvim.colorscheme
-  local theme_supported, template = pcall(function()
+  local color_template = vim.g.colors_name
+  local theme_supported, _ = pcall(function()
     require("lualine.utils.loader").load_theme(color_template)
   end)
-  if theme_supported and template then
-    lvim.builtin.lualine.options.theme = color_template
+  if theme_supported and color_template then
+    config.options.theme = color_template
   end
 end
 

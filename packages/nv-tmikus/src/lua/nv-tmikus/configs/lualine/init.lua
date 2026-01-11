@@ -1,37 +1,36 @@
 local M = {}
-M.config = function()
-  lvim.builtin.lualine = {
-    active = true,
-    style = "lvim",
-    options = {
-      icons_enabled = nil,
-      component_separators = nil,
-      section_separators = nil,
-      theme = nil,
-      disabled_filetypes = { statusline = { "alpha" } },
-      globalstatus = true,
-    },
-    sections = {
-      lualine_a = nil,
-      lualine_b = nil,
-      lualine_c = nil,
-      lualine_x = nil,
-      lualine_y = nil,
-      lualine_z = nil,
-    },
-    inactive_sections = {
-      lualine_a = nil,
-      lualine_b = nil,
-      lualine_c = nil,
-      lualine_x = nil,
-      lualine_y = nil,
-      lualine_z = nil,
-    },
-    tabline = nil,
-    extensions = nil,
-    on_config_done = nil,
-  }
-end
+
+-- Local config table instead of global lvim
+M.config = {
+  active = true,
+  style = "lvim",
+  options = {
+    icons_enabled = nil,
+    component_separators = nil,
+    section_separators = nil,
+    theme = nil,
+    disabled_filetypes = { statusline = { "alpha" } },
+    globalstatus = true,
+  },
+  sections = {
+    lualine_a = nil,
+    lualine_b = nil,
+    lualine_c = nil,
+    lualine_x = nil,
+    lualine_y = nil,
+    lualine_z = nil,
+  },
+  inactive_sections = {
+    lualine_a = nil,
+    lualine_b = nil,
+    lualine_c = nil,
+    lualine_x = nil,
+    lualine_y = nil,
+    lualine_z = nil,
+  },
+  tabline = nil,
+  extensions = nil,
+}
 
 M.setup = function()
   if #vim.api.nvim_list_uis() == 0 then
@@ -43,13 +42,9 @@ M.setup = function()
     return
   end
 
-  require("nv-tmikus.configs.lualine.styles").update()
+  require("nv-tmikus.configs.lualine.styles").update(M.config)
 
-  lualine.setup(lvim.builtin.lualine)
-
-  if lvim.builtin.lualine.on_config_done then
-    lvim.builtin.lualine.on_config_done(lualine)
-  end
+  lualine.setup(M.config)
 end
 
 return M

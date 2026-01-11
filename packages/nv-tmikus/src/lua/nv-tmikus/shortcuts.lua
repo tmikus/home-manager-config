@@ -2,9 +2,6 @@ local wk = require "which-key"
 local telescope = require "telescope.builtin"
 local neogit = require "neogit"
 
--- Settings the leader
-vim.g.mapleader = " "
-
 wk.add({
     {
         mode = "n",

@@ -4,12 +4,12 @@ return {
     version = "v4.*",
   },
   {
-    "kyazdani42/nvim-tree.lua",
+    "nvim-tree/nvim-tree.lua",
     config = function()
       require("nvim-tree").setup(require "nv-tmikus.configs.nvim-tree")
     end
   },
-  "kyazdani42/nvim-web-devicons",
+  "nvim-tree/nvim-web-devicons",
   {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
@@ -29,12 +29,11 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VimEnter",
     dependencies = {
-      "kyazdani42/nvim-web-devicons",
+      "nvim-tree/nvim-web-devicons",
     },
     config = function()
       require("nv-tmikus.configs.lualine").setup()
     end
-    -- opts = require "nv-tmikus.configs.lualine",
   },
   {
     "folke/which-key.nvim",
@@ -75,7 +74,10 @@ return {
   },
   "stevearc/dressing.nvim",
   "moll/vim-bbye",
-  "norcalli/nvim-colorizer.lua",
+  {
+    "norcalli/nvim-colorizer.lua",
+    event = "BufReadPre",
+  },
   {
     "folke/noice.nvim",
     event = "VeryLazy",

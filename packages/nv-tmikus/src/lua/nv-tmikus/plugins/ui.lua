@@ -61,8 +61,16 @@ return {
       },
     },
     config = function()
-      pcall(require("nvim-treesitter.install").update { with_sync = false })
       require("nvim-treesitter.configs").setup(require "nv-tmikus.configs.treesitter")
+      -- Defer treesitter updates to after startup for better load time
+      vim.api.nvim_create_autocmd("VimEnter", {
+        callback = function()
+          vim.defer_fn(function()
+            pcall(require("nvim-treesitter.install").update, { with_sync = false })
+          end, 100)
+        end,
+        once = true,
+      })
     end,
   },
   {
@@ -104,12 +112,6 @@ return {
       "ray-x/guihua.lua",
     },
   },
-  -- Color highlighter for Neovim
-  -- {
-  --   "NvChad/nvim-colorizer.lua",
-  --   opts = {},
-  --   event = "VeryLazy",
-  -- },
   -- Rainbow delimiters
   {
     "HiPhish/rainbow-delimiters.nvim",

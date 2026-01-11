@@ -1,6 +1,7 @@
 local wk = require "which-key"
 local telescope = require "telescope.builtin"
 local neogit = require "neogit"
+local gitsigns = require "gitsigns"
 
 wk.add({
     {
@@ -66,6 +67,18 @@ wk.add({
             end,
             desc = "Toggle the Neogit popup",
         },
+        -- Gitsigns
+        { "]c", function() gitsigns.nav_hunk('next') end, desc = "Next git hunk", icon = "" },
+        { "[c", function() gitsigns.nav_hunk('prev') end, desc = "Previous git hunk", icon = "" },
+        { "<leader>gs", gitsigns.stage_hunk, desc = "Toggle stage hunk", icon = "" },
+        { "<leader>gr", gitsigns.reset_hunk, desc = "Reset hunk", icon = "" },
+        { "<leader>gS", gitsigns.stage_buffer, desc = "Stage buffer", icon = "" },
+        { "<leader>gR", gitsigns.reset_buffer, desc = "Reset buffer", icon = "" },
+        { "<leader>gp", gitsigns.preview_hunk, desc = "Preview hunk", icon = "" },
+        { "<leader>gb", function() gitsigns.blame_line({ full = true }) end, desc = "Blame line", icon = "" },
+        { "<leader>gB", gitsigns.toggle_current_line_blame, desc = "Toggle line blame", icon = "" },
+        { "<leader>gd", gitsigns.diffthis, desc = "Diff this", icon = "" },
+        { "<leader>gD", function() gitsigns.diffthis("~") end, desc = "Diff this (~)", icon = "" },
         -- Neoclip
         { "<leader>p", ":Telescope neoclip<cr>", desc = "Show clipboard history", icon = "󱛢"  },
         -- Refactoring

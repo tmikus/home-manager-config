@@ -11,8 +11,7 @@
         ds = ["diff" "--stat"];
         spr = ["util" "exec" "--" "jj-spr"];
         land = ["util" "exec" "--" "sh" "-c" "jj spr land -r @- && jj git fetch && jj rebase -r @ -d main@origin"];
-        undo = ["op" "undo"];
-        evolog = ["evolog" "--no-pager" "--limit" "10"];
+        el = ["evolog" "--no-pager" "--limit" "10"];
       };
       user = {
         name = "Tomasz Mikus";
@@ -21,9 +20,11 @@
       spr = {
         branchPrefix = "tmikus-";
       };
-      git = {
-        auto-local-bookmark = true;
-        push-bookmark-prefix = "push-";
+      remotes.origin = {
+        auto-track-bookmarks = "glob:*";
+      };
+      templates = {
+        git_push_bookmark = ''"push-" ++ change_id.short()'';
       };
       snapshot = {
         max-new-file-size = "10MiB";

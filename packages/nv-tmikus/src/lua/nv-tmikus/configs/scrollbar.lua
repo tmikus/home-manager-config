@@ -9,9 +9,9 @@ return {
   handle = {
     text = " ",
     blend = 30,                   -- Integer between 0 and 100. 0 for fully opaque and 100 to full transparent. Defaults to 30.
-    color = "#009688",
+    color = nil,                  -- Let theme decide the color
     color_nr = nil,               -- cterm
-    highlight = "CursorColumn",
+    highlight = "Visual",         -- Use Visual highlight group for theme-aware coloring
     hide_if_all_visible = true,   -- Hides handle if all lines are visible
   },
   marks = {

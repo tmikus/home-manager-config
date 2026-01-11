@@ -1,10 +1,3 @@
--- `lvim` is something leftover from LunarVim
-lvim = {
-    builtin = {
-        lualine = require "nv-tmikus.configs.lualine"
-    }
-}
-
 vim.g.mapleader = " "
 
 require "nv-tmikus.lazy"

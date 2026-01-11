@@ -41,6 +41,7 @@
     '';
 
     interactiveShellInit = ''
+      set -g fish_greeting
       fish_config theme choose ayu
 
       # Add mechanic to the environment

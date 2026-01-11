@@ -74,10 +74,7 @@
     profileExtra = ''
       # Add toolbox to PATH
       export GOPATH="${builtins.getEnv "HOME"}/go"
-      export PATH="$PATH:${builtins.getEnv "HOME"}/.toolbox/bin:${builtins.getEnv "HOME"}/.cargo/bin:${builtins.getEnv "HOME"}/.local/bin:${builtins.getEnv "HOME"}/.jetbrains:/usr/local/bin/:$GOPATH/bin:/Users/tmikus/Library/Android/sdk/platform-tools"
-
-      # Add the Chromium build tools
-      export PATH="$PATH:/Users/tmikus/projects/depot_tools"
+      export PATH="$PATH:${builtins.getEnv "HOME"}/.toolbox/bin:${builtins.getEnv "HOME"}/.cargo/bin:${builtins.getEnv "HOME"}/.local/bin:${builtins.getEnv "HOME"}/.jetbrains:/usr/local/bin/:$GOPATH/bin:${builtins.getEnv "HOME"}/Library/Android/sdk/platform-tools"
 
       # Set PATH, MANPATH, etc., for Homebrew.
       [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"

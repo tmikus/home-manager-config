@@ -7,16 +7,16 @@ return {
       ["cmp.entry.get_documentation"] = true,
     },
     progress = {
-      enabled = false,
+      enabled = true,
     },
     hover = {
-      enabled = false,
+      enabled = true,
     },
   },
   presets = {
     command_palette = true,
     long_message_to_split = true,
-    inc_rename = false,
+    inc_rename = true,
     lsp_doc_border = true,
   },
   messages = {

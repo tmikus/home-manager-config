@@ -12,6 +12,7 @@
 
   imports = [
     ./alacritty
+    ./fish.nix
     ./ghostty
     ./git.nix
     ./gitui.nix

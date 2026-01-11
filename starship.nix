@@ -74,7 +74,8 @@
       custom = {
         git_conditional = {
           command = "starship module git_branch; starship module git_status";
-          when = "test ! -d .jj"; # Only show if .jj folder doesn't exist
+          # when = "test ! -d .jj"; # Only show if .jj folder doesn't exist
+          when = "[ ! -d .jj ]";
           format = "$output";
         };
         jj = {

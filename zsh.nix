@@ -4,6 +4,14 @@
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;
+    autosuggestion.enable = true;
+    history = {
+      size = 10000;
+      save = 10000;
+      ignoreDups = true;
+      ignoreAllDups = true;
+      share = true;
+    };
     plugins = [
       {
         name = "zsh-autocomplete";
@@ -12,15 +20,6 @@
           repo = "zsh-autocomplete";
           rev = "25.03.19";
           sha256 = "eb5a5WMQi8arZRZDt4aX1IV+ik6Iee3OxNMCiMnjIx4=";
-        };
-      }
-      {
-        name = "zsh-autosuggestions";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-autosuggestions";
-          rev = "v0.7.1";
-          sha256 = "vpTyYq9ZgfgdDsWzjxVAE7FZH4MALMNZIFyEOBLm5Qo=";
         };
       }
     ];
@@ -39,8 +38,11 @@
             echo ""
         fi
 
-        autoload -Uz compinit
-        compinit
+        # compinit is not needed here because zsh-autocomplete plugin
+        # manages its own compinit initialization. Having multiple compinit
+        # calls can cause slowdowns and conflicts with the completion system.
+        # autoload -Uz compinit
+        # compinit
       '')
       (lib.mkAfter ''
         # Add mechanic to the environment
@@ -52,13 +54,8 @@
         fi
         [ -f "$HOME/.local/share/mise/completions.zsh" ] && source "$HOME/.local/share/mise/completions.zsh"
 
-        if command -v direnv &> /dev/null
-        then
-            eval "$(direnv hook zsh)"
-        fi
-
         # Remove OhMyZsh alias that is used by Git Kraken
-        unalias gk
+        unalias gk 2>/dev/null || true
 
         # Add Ghostty integration
         if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
@@ -73,17 +70,17 @@
     ];
     profileExtra = ''
       # Add toolbox to PATH
-      export GOPATH="${builtins.getEnv "HOME"}/go"
-      export PATH="$PATH:${builtins.getEnv "HOME"}/.toolbox/bin:${builtins.getEnv "HOME"}/.cargo/bin:${builtins.getEnv "HOME"}/.local/bin:${builtins.getEnv "HOME"}/.jetbrains:/usr/local/bin/:$GOPATH/bin:${builtins.getEnv "HOME"}/Library/Android/sdk/platform-tools"
+      export GOPATH="$HOME/go"
+      export PATH="$PATH:$HOME/.toolbox/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.jetbrains:/usr/local/bin/:$GOPATH/bin:$HOME/Library/Android/sdk/platform-tools"
 
       # Set PATH, MANPATH, etc., for Homebrew.
       [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
     shellAliases = lib.mkMerge [
       {
-        bb = "brazil-build $@";
-        bbb = "brazil-recursive-cmd --allPackages brazil-build $@";
-        bws = "brazil workspace $@";
+        bb = "brazil-build";
+        bbb = "brazil-recursive-cmd --allPackages brazil-build";
+        bws = "brazil workspace";
         bws_reset = "brazil-recursive-cmd --allPackages \"git checkout mainline && git reset --hard origin/mainline\"";
         cat = "bat";
         ls = "eza";

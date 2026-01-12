@@ -13,6 +13,7 @@
   imports = [
     ./alacritty
     ./fish.nix
+    ./direnv.nix
     ./ghostty
     ./git.nix
     ./gitui.nix
@@ -66,7 +67,6 @@
     ccache
     delta
     deno
-    direnv
     dua
     eza
     fd
@@ -81,7 +81,7 @@
     mise
     nil
     nixd
-    nixfmt-rfc-style
+    nixfmt
     ripgrep
     rustup
     starship

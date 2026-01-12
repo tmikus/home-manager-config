@@ -146,8 +146,34 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    VISUAL = "nvim";
+    PAGER = "less";
     GOPATH = "$HOME/go";
     GOPROXY = "direct";
+  };
+
+  home.shellAliases = {
+    # Amazon-related aliases
+    bb = "brazil-build";
+    bbb = "brazil-recursive-cmd --allPackages brazil-build";
+    bws = "brazil workspace";
+    bws_reset = "brazil-recursive-cmd --allPackages \"git checkout mainline && git reset --hard origin/mainline\"";
+    
+    # Generic aliases
+    cat = "bat";
+    ls = "eza";
+    ll = "eza -l";
+    l = "eza -l";
+    la = "eza -a";
+    lla = "eza -la";
+    reset_nvim = "rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.config/nvim ~/.cache/nvim";
+    update_home_manager = "nix-channel --update && home-manager switch";
+  } // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
+    morning = "ssh-add -D && mwinit -f && ssh-add --apple-use-keychain ~/.ssh/id_ecdsa";
+    update_db = "sudo /usr/libexec/locate.updatedb";
+  } // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
+    morning = "mwinit -o";
+    update_db = "sudo updatedb";
   };
 
   # Let Home Manager install and manage itself.

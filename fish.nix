@@ -1,29 +1,6 @@
-{ lib, pkgs, ... }:
+{ ... }:
 
 {
-  # Use home-manager's built-in direnv integration
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
-  # Declarative environment variables
-  home.sessionVariables = {
-    GOPATH = "$HOME/go";
-  };
-
-  # Declarative PATH management
-  home.sessionPath = [
-    "$HOME/.toolbox/bin"
-    "$HOME/.cargo/bin"
-    "$HOME/.local/bin"
-    "$HOME/.jetbrains"
-    "/usr/local/bin"
-    "$HOME/go/bin"
-    "$HOME/Library/Android/sdk/platform-tools"
-    "$HOME/.local/share/mise/shims"
-  ];
-
   programs.fish = {
     enable = true;
 
@@ -65,16 +42,6 @@
         source "$HOME/.local/share/mechanic/complete.fish"
       end
 
-      # Load mise completions
-      if test -f "$HOME/.local/share/mise/completions.fish"
-        source "$HOME/.local/share/mise/completions.fish"
-      end
-
-      # Add Ghostty integration
-      if set -q GHOSTTY_RESOURCES_DIR
-        source "$GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish"
-      end
-
       # Import optional config
       if test -f "$HOME/.local-fishrc"
         source "$HOME/.local-fishrc"
@@ -102,22 +69,5 @@
       hm = "home-manager";
     };
 
-    # Simple aliases for command substitutions
-    shellAliases = {
-      cat = "bat";
-      ls = "eza";
-      ll = "eza -l";
-      l = "eza -l";
-      la = "eza -a";
-      lla = "eza -la";
-      reset_nvim = "rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.config/nvim ~/.cache/nvim";
-      update_home_manager = "nix-channel --update && home-manager switch";
-    } // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
-      morning = "ssh-add -D && mwinit -f && ssh-add --apple-use-keychain ~/.ssh/id_ecdsa";
-      update_db = "sudo /usr/libexec/locate.updatedb";
-    } // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
-      morning = "mwinit -o";
-      update_db = "sudo updatedb";
-    };
   };
 }

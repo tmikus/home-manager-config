@@ -16,11 +16,6 @@
       extended = true;
       share = true;
     };
-    sessionVariables = {
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-      PAGER = "less";
-    };
     plugins = [
       {
         name = "zsh-autocomplete";
@@ -63,11 +58,6 @@
         # Remove OhMyZsh alias that is used by Git Kraken
         unalias gk 2>/dev/null || true
 
-        # Add Ghostty integration
-        if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
-            source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
-        fi
-
         # Import optional config
         if [[ -f "$HOME/.local-zshrc" ]]; then
             source "$HOME/.local-zshrc"
@@ -78,34 +68,6 @@
       # Set PATH, MANPATH, etc., for Homebrew.
       [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
-    shellAliases = lib.mkMerge [
-      {
-        bb = "brazil-build";
-        bbb = "brazil-recursive-cmd --allPackages brazil-build";
-        bws = "brazil workspace";
-        bws_reset = "brazil-recursive-cmd --allPackages \"git checkout mainline && git reset --hard origin/mainline\"";
-        cat = "bat";
-        ls = "eza";
-        ll = "ls -l";
-        l = "ls -l";
-        la = "ls -a";
-        lla = "ls -la";
-        reset_nvim = "rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.config/nvim ~/.cache/nvim";
-        update_home_manager = "nix-channel --update && home-manager switch";
-      }
-      (
-        if pkgs.stdenv.hostPlatform.isDarwin then
-          {
-            morning = "ssh-add -D && mwinit -f && ssh-add --apple-use-keychain ~/.ssh/id_ecdsa";
-            update_db = "sudo /usr/libexec/locate.updatedb";
-          }
-        else
-          {
-            morning = "mwinit -o";
-            update_db = "sudo updatedb";
-          }
-      )
-    ];
     oh-my-zsh = {
       enable = true;
       plugins = [

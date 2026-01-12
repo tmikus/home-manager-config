@@ -14,12 +14,14 @@
     ./alacritty
     ./fish.nix
     ./direnv.nix
+    ./fzf.nix
     ./ghostty
     ./git.nix
     ./gitui.nix
     ./intellij
     ./java.nix
     ./jujutsu.nix
+    ./mise.nix
     ./neovim.nix
     ./overlays.nix
     ./starship.nix
@@ -132,8 +134,19 @@
   #
   #  /etc/profiles/per-user/tmikus/etc/profile.d/hm-session-vars.sh
   #
+  home.sessionPath = [
+    "$HOME/.toolbox/bin"
+    "$HOME/.cargo/bin"
+    "$HOME/.local/bin"
+    "$HOME/.jetbrains"
+    "/usr/local/bin"
+    "$HOME/go/bin"
+    "$HOME/Library/Android/sdk/platform-tools"
+  ];
+
   home.sessionVariables = {
     EDITOR = "nvim";
+    GOPATH = "$HOME/go";
     GOPROXY = "direct";
   };
 

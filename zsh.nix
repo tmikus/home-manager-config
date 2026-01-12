@@ -3,13 +3,16 @@
 {
   programs.zsh = {
     enable = true;
+    autocd = true;
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
     history = {
-      size = 10000;
-      save = 10000;
+      size = 50000;
+      save = 50000;
       ignoreDups = true;
       ignoreAllDups = true;
+      ignoreSpace = true;
+      extended = true;
       share = true;
     };
     plugins = [
@@ -38,6 +41,9 @@
             echo ""
         fi
 
+        # Allow comments in interactive shell
+        setopt INTERACTIVE_COMMENTS
+
         # compinit is not needed here because zsh-autocomplete plugin
         # manages its own compinit initialization. Having multiple compinit
         # calls can cause slowdowns and conflicts with the completion system.
@@ -47,12 +53,6 @@
       (lib.mkAfter ''
         # Add mechanic to the environment
         [ -f "$HOME/.local/share/mechanic/complete.zsh" ] && source "$HOME/.local/share/mechanic/complete.zsh"
-
-        if command -v mise &> /dev/null
-        then
-            eval "$(mise activate zsh)"
-        fi
-        [ -f "$HOME/.local/share/mise/completions.zsh" ] && source "$HOME/.local/share/mise/completions.zsh"
 
         # Remove OhMyZsh alias that is used by Git Kraken
         unalias gk 2>/dev/null || true
@@ -69,10 +69,6 @@
       '')
     ];
     profileExtra = ''
-      # Add toolbox to PATH
-      export GOPATH="$HOME/go"
-      export PATH="$PATH:$HOME/.toolbox/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.jetbrains:/usr/local/bin/:$GOPATH/bin:$HOME/Library/Android/sdk/platform-tools"
-
       # Set PATH, MANPATH, etc., for Homebrew.
       [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"
     '';

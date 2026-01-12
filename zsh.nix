@@ -12,8 +12,14 @@
       ignoreDups = true;
       ignoreAllDups = true;
       ignoreSpace = true;
+      expireDuplicatesFirst = true;
       extended = true;
       share = true;
+    };
+    sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+      PAGER = "less";
     };
     plugins = [
       {
@@ -83,6 +89,7 @@
         ll = "ls -l";
         l = "ls -l";
         la = "ls -a";
+        lla = "ls -la";
         reset_nvim = "rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.config/nvim ~/.cache/nvim";
         update_home_manager = "nix-channel --update && home-manager switch";
       }

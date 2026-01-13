@@ -7,6 +7,21 @@ vim.o.cursorline = true
 vim.o.syntax = "on"
 vim.o.wrap = false
 vim.o.clipboard = "unnamedplus"
+
+-- Use OSC 52 for clipboard when in SSH (works without X11 forwarding)
+if os.getenv("SSH_TTY") then
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+    },
+  }
+end
 vim.o.completeopt = 'menuone,noselect'
 vim.o.expandtab = true
 vim.o.fillchars = 'eob: '
@@ -24,5 +39,7 @@ vim.o.updatetime = 300
 vim.o.signcolumn = "yes"
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.o.smoothscroll = true
+
+-- Don't use smooth scroll in SSH
+vim.o.smoothscroll = not os.getenv("SSH_TTY")
 

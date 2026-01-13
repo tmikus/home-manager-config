@@ -91,11 +91,12 @@
     unzip
     uutils-coreutils-noprefix
     xan
-    xclip
     xh
     wget
     zellij
     zig
+  ] ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+    xclip # Clipboard provider for neovim
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

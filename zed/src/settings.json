@@ -7,13 +7,17 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "assistant": {
+  "icon_theme": {
+    "mode": "system",
+    "light": "Catppuccin Mocha",
+    "dark": "Catppuccin Frappé"
+  },
+  "agent": {
     "default_model": {
       "provider": "openai",
       "model": "gpt-4o"
     },
-    "enabled": true,
-    "version": "2"
+    "enabled": true
   },
   "theme": {
     "mode": "system",
@@ -21,8 +25,7 @@
     "dark": "Catppuccin Mocha"
   },
   "features": {
-    "inline_completion_provider": "none",
-    "copilot": false
+    "edit_prediction_provider": "none"
   },
   "base_keymap": "JetBrains",
   "telemetry": {

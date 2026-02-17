@@ -1,9 +1,11 @@
 { pkgs, ... }:
 
 {
+  # file manager in the terminal
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
+    shellWrapperName = "y";
   };
 
   xdg.configFile."yazi/theme.toml" = {

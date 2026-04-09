@@ -57,6 +57,10 @@ in
       }
     ];
     extraConfig = ''
+      # Fix colors: tell tmux to advertise 256color and enable true color (RGB)
+      set -g default-terminal "tmux-256color"
+      set -ag terminal-overrides ",xterm-256color:RGB"
+
       # The section below is greatly influenced by https://hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/
       # remap prefix from 'C-b' to 'C-a'
       # unbind C-b

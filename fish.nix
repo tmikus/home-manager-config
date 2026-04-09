@@ -31,6 +31,9 @@
     '';
 
     interactiveShellInit = ''
+      # Set $SHELL to fish so tools see the correct interactive shell
+      set -gx SHELL (command -s fish)
+
       # Only set theme if not already set to ayu
       if test "$__fish_theme" != "ayu"
         fish_config theme choose ayu

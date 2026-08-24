@@ -7,6 +7,9 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "edit_predictions": {
+    "provider": "none"
+  },
   "icon_theme": {
     "mode": "system",
     "light": "Catppuccin Mocha",
@@ -23,9 +26,6 @@
     "mode": "system",
     "light": "One Light",
     "dark": "Catppuccin Mocha"
-  },
-  "features": {
-    "edit_prediction_provider": "none"
   },
   "base_keymap": "JetBrains",
   "telemetry": {

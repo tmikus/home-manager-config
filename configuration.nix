@@ -75,7 +75,6 @@
     fzf
     gnutar
     go
-    jj-spr
     jq
     k9s
     kubectl
@@ -159,7 +158,7 @@
     bbb = "brazil-recursive-cmd --allPackages brazil-build";
     bws = "brazil workspace";
     bws_reset = "brazil-recursive-cmd --allPackages \"git checkout mainline && git reset --hard origin/mainline\"";
-    
+
     # Generic aliases
     cat = "bat";
     ls = "eza";

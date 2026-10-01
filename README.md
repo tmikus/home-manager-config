@@ -133,7 +133,3 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
 fi
 # End Nixs
 ```
-
-## Test change
-
-This is a test change to see how JJ SPR works

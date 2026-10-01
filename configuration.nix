@@ -20,7 +20,6 @@
     ./gitui.nix
     ./intellij
     ./java.nix
-    ./jujutsu.nix
     ./mise.nix
     ./neovim.nix
     ./overlays.nix

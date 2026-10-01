@@ -1,7 +1,6 @@
 {
   nixpkgs.overlays = [
     (final: prev: {
-      jj-spr = prev.callPackage ./packages/jj-spr { };
       nv-tmikus = prev.callPackage ./packages/nv-tmikus { };
 
       # TEMPORARY: the nixpkgs-unstable channel's mise (2026.7.10) was never built

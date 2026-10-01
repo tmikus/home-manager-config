@@ -108,4 +108,4 @@ The configuration uses Catppuccin (Mocha variant) consistently across tools incl
 
 ## State Version
 
-Home Manager state version is 23.11. Do not change without understanding migration implications.
+Home Manager state version is 26.05. Do not change without understanding migration implications.

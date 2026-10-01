@@ -65,8 +65,8 @@ return {
     "ThePrimeagen/refactoring.nvim",
     config = true,
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
+      -- Only required on Neovim 0.12; 0.13+ ships vim.async
+      "lewis6991/async.nvim",
     },
   },
 }

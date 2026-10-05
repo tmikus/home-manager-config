@@ -49,9 +49,11 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
       {
         "JoosepAlviste/nvim-ts-context-commentstring",
         config = function()
@@ -61,16 +63,77 @@ return {
       },
     },
     config = function()
-      require("nvim-treesitter.configs").setup(require "nv-tmikus.configs.treesitter")
-      -- Defer treesitter updates to after startup for better load time
-      vim.api.nvim_create_autocmd("VimEnter", {
-        callback = function()
-          vim.defer_fn(function()
-            pcall(require("nvim-treesitter.install").update, { with_sync = false })
-          end, 100)
+      local ts = require "nvim-treesitter"
+      local opts = require "nv-tmikus.configs.treesitter"
+
+      ts.install(opts.ensure_installed)
+
+      local available = {}
+      if opts.auto_install then
+        for _, lang in ipairs(ts.get_available()) do
+          available[lang] = true
+        end
+      end
+
+      local function attach(buf, lang)
+        if not pcall(vim.treesitter.start, buf, lang) then
+          return
+        end
+        if not vim.tbl_contains(opts.indent_disable, vim.bo[buf].filetype) then
+          vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+      end
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("nv-tmikus-treesitter", { clear = true }),
+        callback = function(args)
+          local lang = vim.treesitter.language.get_lang(args.match)
+          if not lang then
+            return
+          end
+          if vim.treesitter.language.add(lang) then
+            attach(args.buf, lang)
+          elseif available[lang] then
+            ts.install(lang):await(vim.schedule_wrap(function()
+              if vim.api.nvim_buf_is_valid(args.buf) then
+                attach(args.buf, lang)
+              end
+            end))
+          end
         end,
-        once = true,
       })
+
+      -- Text objects
+      local textobjects = opts.textobjects
+      require("nvim-treesitter-textobjects").setup {
+        select = { lookahead = textobjects.select.lookahead },
+        move = { set_jumps = textobjects.move.set_jumps },
+      }
+
+      local select = require "nvim-treesitter-textobjects.select"
+      for key, query in pairs(textobjects.select.keymaps) do
+        vim.keymap.set({ "x", "o" }, key, function()
+          select.select_textobject(query, "textobjects")
+        end)
+      end
+
+      local move = require "nvim-treesitter-textobjects.move"
+      for _, method in ipairs({ "goto_next_start", "goto_next_end", "goto_previous_start", "goto_previous_end" }) do
+        for key, query in pairs(textobjects.move[method]) do
+          vim.keymap.set({ "n", "x", "o" }, key, function()
+            move[method](query, "textobjects")
+          end)
+        end
+      end
+
+      local swap = require "nvim-treesitter-textobjects.swap"
+      for _, method in ipairs({ "swap_next", "swap_previous" }) do
+        for key, query in pairs(textobjects.swap[method]) do
+          vim.keymap.set("n", key, function()
+            swap[method](query)
+          end)
+        end
+      end
     end,
   },
   {

@@ -227,7 +227,8 @@ null_ls.setup({
 -- mason-null-ls config
 require("mason-null-ls").setup({
     ensure_installed = vim.tbl_keys(all_formatters),
-    automatic_installation = true,
+    -- eslint_d is installed by mason-nvim-lint; installing it here too races with it
+    automatic_installation = false,
 })
 
 -- Start go lang support

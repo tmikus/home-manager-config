@@ -24,17 +24,4 @@ if os.getenv("ENABLE_AMAZON_Q") == "1" then
   })
 end
 
--- Include SuperMaven unless DISABLE_SUPERMAVEN is set
-if os.getenv("DISABLE_SUPERMAVEN") ~= "1" then
-  table.insert(plugins, {
-    "supermaven-inc/supermaven-nvim",
-    opts = {
-      keymaps = {
-        accept_suggestion = "<C-CR>",
-      },
-    },
-    config = true,
-  })
-end
-
 return plugins

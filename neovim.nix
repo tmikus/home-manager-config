@@ -9,6 +9,9 @@
   # All plugins are Lua; no remote plugins need the Ruby/Python providers
   programs.neovim.withRuby = false;
   programs.neovim.withPython3 = false;
+  # Mason installs npm-based tools (LSPs, prettier, eslint_d). Node is only put
+  # on Neovim's PATH so the shell keeps using the NVM-managed versions.
+  programs.neovim.extraPackages = [ pkgs.nodejs ];
   # sqlite.lua (used by neoclip) can't find libsqlite3 outside of FHS/Homebrew paths
   programs.neovim.extraWrapperArgs = [
     "--set"

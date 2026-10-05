@@ -88,12 +88,11 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
--- Setup mason so it can manage external tooling
-require("mason").setup({
-    ui = {
-        border = "rounded",
-    },
-})
+-- Setup mason so it can manage external tooling. The lazy build hook may have
+-- already set it up, and a second setup registers the registries twice.
+if not require("mason").has_setup then
+    require("mason").setup(require("nv-tmikus.configs.mason"))
+end
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require "mason-lspconfig"

@@ -20,14 +20,12 @@
     ./gitui.nix
     ./intellij
     ./java.nix
-    ./mise.nix
     ./neovim.nix
     ./overlays.nix
     ./starship.nix
     ./tmux.nix
     ./yazi.nix
     ./wezterm
-    ./zed
     ./zellij
     ./zoxide.nix
     ./zsh.nix
@@ -78,10 +76,10 @@
     k9s
     kubectl
     lua-language-server
-    mise
     nil
     nixd
     nixfmt
+    nodejs_24
     ripgrep
     rustup
     starship
